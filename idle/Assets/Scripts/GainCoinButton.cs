@@ -240,7 +240,6 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
             productionUpgrade1Level = 0;
             productionUpgrade2Level = 0;
             
-
             gems += gemsToGet;
         }
     }
