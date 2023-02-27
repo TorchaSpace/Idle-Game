@@ -47,6 +47,9 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         this.productionUpgrade1Cost = saveLoad.productionUpgrade1Cost;
         this.productionUpgrade2Cost = saveLoad.productionUpgrade2Cost;
         this.clickUpgrade1Level = saveLoad.clickUpgrade1Level;
+        this.clickUpgrade2Level = saveLoad.clickUpgrade2Level;
+        this.productionUpgrade1Level = saveLoad.productionUpgrade1Level;
+        this.productionUpgrade2Level = saveLoad.productionUpgrade2Level;
     }
 
     public void SaveData(ref SaveLoad saveLoad)
@@ -58,6 +61,9 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         saveLoad.productionUpgrade1Cost = (int)this.productionUpgrade1Cost;
         saveLoad.productionUpgrade2Cost = (int)this.productionUpgrade2Cost;
         saveLoad.clickUpgrade1Level = this.clickUpgrade1Level;
+        saveLoad.clickUpgrade2Level = this.clickUpgrade2Level;
+        saveLoad.productionUpgrade1Level = this.productionUpgrade1Level;
+        saveLoad.productionUpgrade2Level = this.productionUpgrade2Level;
     }
 
     private void Update()
