@@ -12,7 +12,9 @@ public class SaveLoad
     public int productionUpgrade1Cost;
     public int productionUpgrade2Cost;
     public int clickUpgrade1Level;
-
+    public int clickUpgrade2Level;
+    public int productionUpgrade1Level;
+    public int productionUpgrade2Level;
 
     public SaveLoad()
     {
@@ -23,5 +25,8 @@ public class SaveLoad
         this.productionUpgrade1Cost = 25;
         this.productionUpgrade2Cost = 250;
         this.clickUpgrade1Level = 1;
+        this.clickUpgrade2Level = 1;
+        this.productionUpgrade1Level = 1;
+        this.productionUpgrade2Level = 1;
     }
 }
