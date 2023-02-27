@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 3526
+  controlID: 13370
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -89,7 +89,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 3527
+  controlID: 13371
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 3528
+  controlID: 13372
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -228,9 +228,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c6d7feff
-      m_LastClickedID: -75834
-      m_ExpandedIDs: 08c4feff46e8feff14f1feff64f2feff6af3feff68f4feff96f6feff30fbffff7c670000
+      m_SelectedIDs: 24b60000
+      m_LastClickedID: 46628
+      m_ExpandedIDs: b628feffdea4feff70befeff46e8feff14f1feff64f2feff6af3feff68f4feff96f6feff30fbffff7c67000020b60000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -246,7 +246,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 0}
+        m_ClientGUIView: {fileID: 5}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -391,7 +391,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       floating: 0
       collapsed: 0
-      displayed: 0
+      displayed: 1
       snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
@@ -507,9 +507,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 26.220184, y: 225.37509, z: -59.821083}
+    m_Target: {x: -108.55395, y: -155.48628, z: 5.1443157}
     speed: 2
-    m_Value: {x: 26.220184, y: 225.37509, z: -59.821083}
+    m_Value: {x: -108.55395, y: -155.48628, z: 5.144315}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -556,13 +556,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.46647727, y: -0.15607284, z: 0.08401186, w: 0.8665896}
+    m_Target: {x: 0.24077143, y: -0.7582292, z: 0.45019484, w: 0.40550682}
     speed: 2
-    m_Value: {x: 0.46647838, y: -0.15607321, z: 0.08401206, w: 0.8665917}
+    m_Value: {x: 0.2407722, y: -0.75823164, z: 0.4501963, w: 0.40550813}
   m_Size:
-    m_Target: 18.643578
+    m_Target: 321.71304
     speed: 2
-    m_Value: 18.643578
+    m_Value: 321.71304
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -656,21 +656,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/aliemrecelik/Desktop/Idle-Game/idle
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 4a680000
-    m_LastClickedID: 26698
+    m_SelectedIDs: d6690000
+    m_LastClickedID: 27094
     m_ExpandedIDs: 000000004a680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -724,8 +724,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: c6d7feff
-    m_LastClickedInstanceID: -75834
+    m_SelectedInstanceIDs: 24b60000
+    m_LastClickedInstanceID: 46628
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -803,8 +803,8 @@ MonoBehaviour:
     y: 0
     width: 340.5
     height: 850
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
