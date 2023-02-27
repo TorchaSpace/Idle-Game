@@ -14,6 +14,9 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
     public Text clickUpgrade2Text;
     public Text productionUpgrade1Text;
     public Text productionUpgrade2Text;
+    public Text gemsText;
+    public Text gemBoostText;
+    public Text gemsToGetText;
 
     public double coins;
     public double coinsClickValue;
@@ -33,6 +36,10 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
     public double productionUpgrade2Power;
     public int productionUpgrade2Level;
 
+    public double gems;
+    public double gemBoost;
+    public double gemsToGet;
+
     private void Start()
     {
         productionUpgrade2Power = 5;
@@ -50,6 +57,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         this.clickUpgrade2Level = saveLoad.clickUpgrade2Level;
         this.productionUpgrade1Level = saveLoad.productionUpgrade1Level;
         this.productionUpgrade2Level = saveLoad.productionUpgrade2Level;
+        this.gems = saveLoad.gems;
     }
 
     public void SaveData(ref SaveLoad saveLoad)
@@ -64,11 +72,19 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         saveLoad.clickUpgrade2Level = this.clickUpgrade2Level;
         saveLoad.productionUpgrade1Level = this.productionUpgrade1Level;
         saveLoad.productionUpgrade2Level = this.productionUpgrade2Level;
+        saveLoad.gems = (int)this.gems;
     }
 
     private void Update()
     {
-        coinsPerSec = productionUpgrade1Level + (productionUpgrade2Power * productionUpgrade2Level);
+        gemsToGet = (150 * System.Math.Sqrt(coins / 1e7));
+        gemBoost = (gems * 0.05) + 1;
+
+        gemsToGetText.text = "Prestige:\n+" + System.Math.Floor(gemsToGet).ToString("F0") + " Gems";
+        gemsText.text = "Gems: " + System.Math.Floor(gems).ToString("F0");
+        gemBoostText.text = gemBoost.ToString("F2") + "x boost";
+
+        coinsPerSec = (productionUpgrade1Level + (productionUpgrade2Power * productionUpgrade2Level)) * gemBoost;
 
 
         if(coinsClickValue > 1000)
@@ -173,7 +189,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
             productionUpgrade1LevelString = productionUpgrade1Level.ToString("F0");
         }
 
-        productionUpgrade1Text.text = "Production Upgrade 1\nCost: " + productionUpgrade1CostString + "coins\nPower: +1 coins/s\nLevel: " + productionUpgrade1LevelString;
+        productionUpgrade1Text.text = "Production Upgrade 1\nCost: " + productionUpgrade1CostString + "coins\nPower: +" + gemBoost + " coins/s\nLevel: " + productionUpgrade1LevelString;
 
         string productionUpgrade2CostString;
         if (productionUpgrade2Cost > 1000)
@@ -199,7 +215,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
             productionUpgrade2LevelString = productionUpgrade2Level.ToString("F0");
         }
 
-        productionUpgrade2Text.text = "Production Upgrade 1\nCost: " + productionUpgrade2CostString + "coins\nPower: +" + productionUpgrade2Power + " coins/s\nLevel: " + productionUpgrade2LevelString;
+        productionUpgrade2Text.text = "Production Upgrade 1\nCost: " + productionUpgrade2CostString + "coins\nPower: +" + (productionUpgrade2Power * gemBoost) + " coins/s\nLevel: " + productionUpgrade2LevelString;
 
         coins += coinsPerSec * Time.deltaTime;
     }
@@ -207,6 +223,26 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
     public void Click()
     {
         coins += coinsClickValue;
+    }
+
+    public void Prestige()
+    {
+        if(coins > 1000)
+        {
+            coins = 0;
+            coinsClickValue = 1;
+            clickUpgrade1Cost = 10;
+            clickUpgrade2Cost = 100;
+            productionUpgrade1Cost = 25;
+            productionUpgrade2Cost = 250;
+            clickUpgrade1Level = 0;
+            clickUpgrade2Level = 0;
+            productionUpgrade1Level = 0;
+            productionUpgrade2Level = 0;
+            
+
+            gems += gemsToGet;
+        }
     }
 
     public void OpenUpgradeMenu()
