@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GainCoinButton : MonoBehaviour
+public class GainCoinButton : MonoBehaviour, IDataPersistence
 {
     public GameObject upgradeMenu;
 
@@ -35,12 +35,29 @@ public class GainCoinButton : MonoBehaviour
 
     private void Start()
     {
-        coinsClickValue = 1;
-        clickUpgrade1Cost = 10;
-        clickUpgrade2Cost = 100;
-        productionUpgrade1Cost = 25;
-        productionUpgrade2Cost = 250;
         productionUpgrade2Power = 5;
+    }
+
+    public void LoadData(SaveLoad saveLoad)
+    {
+        this.coins = saveLoad.coins;
+        this.coinsClickValue = saveLoad.coinsClickValue;
+        this.clickUpgrade1Cost = saveLoad.clickUpgrade1Cost;
+        this.clickUpgrade2Cost = saveLoad.clickUpgrade2Cost;
+        this.productionUpgrade1Cost = saveLoad.productionUpgrade1Cost;
+        this.productionUpgrade2Cost = saveLoad.productionUpgrade2Cost;
+        this.clickUpgrade1Level = saveLoad.clickUpgrade1Level;
+    }
+
+    public void SaveData(ref SaveLoad saveLoad)
+    {
+        saveLoad.coins = (int)this.coins;
+        saveLoad.coinsClickValue = (int)this.coinsClickValue;
+        saveLoad.clickUpgrade1Cost = (int)this.clickUpgrade1Cost;
+        saveLoad.clickUpgrade2Cost = (int)this.clickUpgrade2Cost;
+        saveLoad.productionUpgrade1Cost = (int)this.productionUpgrade1Cost;
+        saveLoad.productionUpgrade2Cost = (int)this.productionUpgrade2Cost;
+        saveLoad.clickUpgrade1Level = this.clickUpgrade1Level;
     }
 
     private void Update()
