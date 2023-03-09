@@ -91,26 +91,26 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         {
             var exponent = (System.Math.Floor(System.Math.Log10(System.Math.Abs(coinsClickValue))));
             var mantissa = (coinsClickValue / System.Math.Pow(10, exponent));
-            clickValueText.text = "Click\n+" + mantissa.ToString("F2") + "e" + exponent + " Coins";
+            clickValueText.text = "Click\n+" + mantissa.ToString("F2") + "e" + exponent + " Fish";
         }
         else
         {
-            clickValueText.text = "Click\n+" + coinsClickValue.ToString("F0") + " Coins";
+            clickValueText.text = "Click\n+" + coinsClickValue.ToString("F0") + " Fish";
         }
 
         if (coins > 1000)
         {
             var exponent = (System.Math.Floor(System.Math.Log10(System.Math.Abs(coins))));
             var mantissa = (coins / System.Math.Pow(10, exponent));
-            coinText.text = "Coins: " + mantissa.ToString("F2") + "e" + exponent;
+            coinText.text = "Fish: " + mantissa.ToString("F2") + "e" + exponent;
         }
         else
         {
-            coinText.text = "Coins: " + coins.ToString("F0");
+            coinText.text = "Fish: " + coins.ToString("F0");
         }
 
         
-        coinPerSecText.text = coinsPerSec.ToString("F0") + " coins/s";
+        coinPerSecText.text = coinsPerSec.ToString("F0") + " fish/s";
 
         string clickUpgrade1CostString;
         if (clickUpgrade1Cost > 1000)
@@ -136,7 +136,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
             clickUpgrade1LevelString = clickUpgrade1Level.ToString("F0");
         }
 
-        clickUpgrade1Text.text = "Click Upgrade 1\nCost: " + clickUpgrade1CostString + "coins\nPower: +1 Click\nLevel: " + clickUpgrade1LevelString;
+        clickUpgrade1Text.text = "Click Upgrade 1\nCost: " + clickUpgrade1CostString + "fish\nPower: +1 Click\nLevel: " + clickUpgrade1LevelString;
 
         string clickUpgrade2CostString;
         if (clickUpgrade2Cost > 1000)
@@ -162,7 +162,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
             clickUpgrade2LevelString = clickUpgrade2Level.ToString("F0");
         }
 
-        clickUpgrade2Text.text = "Click Upgrade 2\nCost: " + clickUpgrade2CostString + "coins\nPower: +5 Click\nLevel: " + clickUpgrade2LevelString;
+        clickUpgrade2Text.text = "Click Upgrade 2\nCost: " + clickUpgrade2CostString + "fish\nPower: +5 Click\nLevel: " + clickUpgrade2LevelString;
 
 
         string productionUpgrade1CostString;
@@ -189,7 +189,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
             productionUpgrade1LevelString = productionUpgrade1Level.ToString("F0");
         }
 
-        productionUpgrade1Text.text = "Production Upgrade 1\nCost: " + productionUpgrade1CostString + "coins\nPower: +" + gemBoost + " coins/s\nLevel: " + productionUpgrade1LevelString;
+        productionUpgrade1Text.text = "Production Upgrade 1\nCost: " + productionUpgrade1CostString + "fish\nPower: +" + gemBoost + " fish/s\nLevel: " + productionUpgrade1LevelString;
 
         string productionUpgrade2CostString;
         if (productionUpgrade2Cost > 1000)
@@ -215,7 +215,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
             productionUpgrade2LevelString = productionUpgrade2Level.ToString("F0");
         }
 
-        productionUpgrade2Text.text = "Production Upgrade 1\nCost: " + productionUpgrade2CostString + "coins\nPower: +" + (productionUpgrade2Power * gemBoost) + " coins/s\nLevel: " + productionUpgrade2LevelString;
+        productionUpgrade2Text.text = "Production Upgrade 1\nCost: " + productionUpgrade2CostString + "fish\nPower: +" + (productionUpgrade2Power * gemBoost) + " fish/s\nLevel: " + productionUpgrade2LevelString;
 
         coins += coinsPerSec * Time.deltaTime;
     }
