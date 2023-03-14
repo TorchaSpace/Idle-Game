@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GainCoinButton : MonoBehaviour, IDataPersistence
+public class GainCoinButton : MonoBehaviour
 {
     public GameObject upgradeMenu;
 
@@ -40,40 +40,14 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
     public double gemBoost;
     public double gemsToGet;
 
+    public static double cardUpgrades = 0;
+
     private void Start()
     {
         productionUpgrade2Power = 5;
     }
 
-    public void LoadData(SaveLoad saveLoad)
-    {
-        this.coins = saveLoad.coins;
-        this.coinsClickValue = saveLoad.coinsClickValue;
-        this.clickUpgrade1Cost = saveLoad.clickUpgrade1Cost;
-        this.clickUpgrade2Cost = saveLoad.clickUpgrade2Cost;
-        this.productionUpgrade1Cost = saveLoad.productionUpgrade1Cost;
-        this.productionUpgrade2Cost = saveLoad.productionUpgrade2Cost;
-        this.clickUpgrade1Level = saveLoad.clickUpgrade1Level;
-        this.clickUpgrade2Level = saveLoad.clickUpgrade2Level;
-        this.productionUpgrade1Level = saveLoad.productionUpgrade1Level;
-        this.productionUpgrade2Level = saveLoad.productionUpgrade2Level;
-        this.gems = saveLoad.gems;
-    }
-
-    public void SaveData(ref SaveLoad saveLoad)
-    {
-        saveLoad.coins = (int)this.coins;
-        saveLoad.coinsClickValue = (int)this.coinsClickValue;
-        saveLoad.clickUpgrade1Cost = (int)this.clickUpgrade1Cost;
-        saveLoad.clickUpgrade2Cost = (int)this.clickUpgrade2Cost;
-        saveLoad.productionUpgrade1Cost = (int)this.productionUpgrade1Cost;
-        saveLoad.productionUpgrade2Cost = (int)this.productionUpgrade2Cost;
-        saveLoad.clickUpgrade1Level = this.clickUpgrade1Level;
-        saveLoad.clickUpgrade2Level = this.clickUpgrade2Level;
-        saveLoad.productionUpgrade1Level = this.productionUpgrade1Level;
-        saveLoad.productionUpgrade2Level = this.productionUpgrade2Level;
-        saveLoad.gems = (int)this.gems;
-    }
+    
 
     private void Update()
     {
@@ -84,7 +58,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         gemsText.text = "Gems: " + System.Math.Floor(gems).ToString("F0");
         gemBoostText.text = gemBoost.ToString("F2") + "x boost";
 
-        coinsPerSec = (productionUpgrade1Level + (productionUpgrade2Power * productionUpgrade2Level)) * gemBoost;
+        coinsPerSec = (productionUpgrade1Level + (productionUpgrade2Power * productionUpgrade2Level)) * gemBoost + cardUpgrades;
 
 
         if(coinsClickValue > 1000)
