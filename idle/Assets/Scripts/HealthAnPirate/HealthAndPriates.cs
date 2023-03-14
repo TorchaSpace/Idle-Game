@@ -205,7 +205,7 @@ public class HealthAndPriates : MonoBehaviour
 
         
 
-        if (sellFish.gainedCoin <= 0)
+        if (sellFish.gainedCoin < takenMoney)
         {
             health--;
             GuardCount--;
@@ -220,7 +220,6 @@ public class HealthAndPriates : MonoBehaviour
                 sellFish.gainedCoin = 0;
             }
             
-            pirateShip.SetActive(false);
         }
         Time.timeScale = 1;
         takenMoney *= 2;

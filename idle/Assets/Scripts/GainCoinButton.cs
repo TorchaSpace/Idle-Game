@@ -44,6 +44,11 @@ public class GainCoinButton : MonoBehaviour
 
     private void Start()
     {
+        coinsClickValue = 1;
+        clickUpgrade1Cost = 100;
+        clickUpgrade2Cost = 200;
+        productionUpgrade1Cost = 500;
+        productionUpgrade2Cost = 1000;
         productionUpgrade2Power = 5;
     }
 

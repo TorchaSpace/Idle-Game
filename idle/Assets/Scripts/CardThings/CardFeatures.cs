@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CardFeatures : MonoBehaviour
 {
+    public GameObject buyCardScreen;
+
     public GainCoinButton gainCoinButton;
     public SellFish sellFish;
 
@@ -41,6 +43,11 @@ public class CardFeatures : MonoBehaviour
     public GameObject AbundanceOfFishRight;
     public GameObject SeaGuardsRight;
 
+    public void BuyCards()
+    {
+        buyCardScreen.SetActive(!buyCardScreen.activeSelf);
+    }
+
     public void TopMaritimeTrader()
     {
         TopMaritimeTraderLeft.SetActive(false);
@@ -75,15 +82,24 @@ public class CardFeatures : MonoBehaviour
 
     }
 
-    public void EnchantedWatersEpic()
+    public void EnchantedWatersEpic(int cost)
     {
-        GainCoinButton.cardUpgrades += gainCoinButton.coinsPerSec + (gainCoinButton.coinsPerSec * 0.25);
+        if(gainCoinButton.gems > cost)
+        {
+            GainCoinButton.cardUpgrades += gainCoinButton.coinsPerSec + (gainCoinButton.coinsPerSec * 0.25);
+            gainCoinButton.gems -= cost;
+        }
 
     }
 
-    public void MermaidsLove()
+    public void MermaidsLove(int cost)
     {
-        GainCoinButton.cardUpgrades += gainCoinButton.coinsPerSec + (gainCoinButton.coinsPerSec * 0.2f);
+        if(gainCoinButton.gems > cost)
+        {
+            GainCoinButton.cardUpgrades += gainCoinButton.coinsPerSec + (gainCoinButton.coinsPerSec * 0.2f);
+            gainCoinButton.gems -= cost;
+
+        }
     }
 
     public void HappySouls()
@@ -157,19 +173,34 @@ public class CardFeatures : MonoBehaviour
 
     }
 
-    public void FlipTheCoins()
+    public void FlipTheCoins(int cost)
     {
-        sellFish.gainedCoin += 10000;
+        if(gainCoinButton.gems > cost)
+        {
+            sellFish.gainedCoin += 10000;
+            gainCoinButton.gems -= cost;
+
+        }
     }
 
-    public void TheGoddessTresure()
+    public void TheGoddessTresure(int cost)
     {
-        sellFish.gainedCoin += 7000;
+         if(gainCoinButton.gems > cost)
+        {
+            sellFish.gainedCoin += 7000;
+            gainCoinButton.gems -= cost;
+
+        }
     }
 
-    public void CruisingSouls()
+    public void CruisingSouls(int cost)
     {
-        gainCoinButton.coinsClickValue += gainCoinButton.coinsClickValue * 2;
+        if(gainCoinButton.gems > cost)
+        {
+            gainCoinButton.coinsClickValue += gainCoinButton.coinsClickValue * 2;
+            gainCoinButton.gems -= cost;
+
+        }
     }
 
     public void LifeElixir()
@@ -217,32 +248,42 @@ public class CardFeatures : MonoBehaviour
         
     }
 
-    public void WrathOfTheSeaGoddess2()
+    public void WrathOfTheSeaGoddess2(int cost)
     {
-       if(healthAndPriates.korsanPower > 10)
-       {
-           healthAndPriates.reducedPower += (int)(healthAndPriates.korsanPower + (healthAndPriates.korsanPower * 0.2));
-
-       }
-
-       if(healthAndPriates.korsanPower <= 1)
-       {
-           healthAndPriates.korsanPower = 1;
-       }
-
-    }
-
-    public void WrathOfTheSeaGoddess2More()
-    {
-        if (healthAndPriates.korsanPower > 10)
+       if(gainCoinButton.gems > cost)
         {
-            healthAndPriates.reducedPower += (int)(healthAndPriates.korsanPower + (healthAndPriates.korsanPower * 0.25));
+            if (healthAndPriates.korsanPower > 10)
+            {
+                healthAndPriates.reducedPower += (int)(healthAndPriates.korsanPower + (healthAndPriates.korsanPower * 0.2));
+
+            }
+
+            if (healthAndPriates.korsanPower <= 1)
+            {
+                healthAndPriates.korsanPower = 1;
+            }
+            gainCoinButton.gems -= cost;
 
         }
 
-        if (healthAndPriates.korsanPower <= 1)
+    }
+
+    public void WrathOfTheSeaGoddess2More(int cost)
+    {
+        if(gainCoinButton.gems > cost)
         {
-            healthAndPriates.korsanPower = 1;
+            if (healthAndPriates.korsanPower > 10)
+            {
+                healthAndPriates.reducedPower += (int)(healthAndPriates.korsanPower + (healthAndPriates.korsanPower * 0.25));
+
+            }
+
+            if (healthAndPriates.korsanPower <= 1)
+            {
+                healthAndPriates.korsanPower = 1;
+            }
+            gainCoinButton.gems -= cost;
+
         }
     }
 
@@ -292,5 +333,26 @@ public class CardFeatures : MonoBehaviour
         CardSelection.reachedFish *= 2;
         newCardButton.interactable = false;
         cardSelectionScreen.SetActive(false);
+    }
+
+    public void TheMermaidsDiscovery(int cost)
+    {
+        if(gainCoinButton.gems > cost)
+        {
+            GainCoinButton.cardUpgrades += gainCoinButton.coinsPerSec + (gainCoinButton.coinsPerSec * 0.2f);
+            gainCoinButton.gems -= cost;
+
+        }
+    }
+
+    public void LostFisherman(int cost)
+    {
+        if(gainCoinButton.gems > cost)
+        {
+            gainCoinButton.coinsClickValue += gainCoinButton.coinsClickValue + (0.225f * gainCoinButton.coinsClickValue);
+            gainCoinButton.gems -= cost;
+
+        }
+
     }
 }
