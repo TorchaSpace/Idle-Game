@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 0
-  m_FogColor: {r: 0.41460353, g: 0.5755895, b: 0.58539647, a: 1}
+  m_FogColor: {r: 0.036445867, g: 0.515403, b: 0.9813025, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 4219bffb0347c4fc8a7573184b3fcd7a,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2847,7 +2848,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.6655039, g: 0.6655039, b: 0.6655039, a: 1}
+  m_Color: {r: 0.84670544, g: 0.84670544, b: 0.84670544, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -2905,7 +2906,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
-  m_LocalRotation: {x: 0.023437927, y: 0.95949745, z: -0.26789653, w: 0.08394521}
+  m_LocalRotation: {x: 0.046314467, y: 0.8438984, z: -0.5293764, w: 0.073831595}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10513,7 +10514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionalLight: {fileID: 410087040}
   dayControl: {fileID: 11400000, guid: 248c6a10ba3f54dfaa7385571e1a8184, type: 2}
-  TimeOfDay: 20.2
+  TimeOfDay: 25.7
   indoorLightning: {fileID: 161624051}
   outdoorLightning: {fileID: 844191633}
 --- !u!4 &1501372264
