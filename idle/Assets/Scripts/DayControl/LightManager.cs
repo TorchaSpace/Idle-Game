@@ -30,12 +30,12 @@ public class LightManager : MonoBehaviour
             UpdateLightning(TimeOfDay / 60f);
         }
 
-        if(TimeOfDay > 16f)
+        if(TimeOfDay > 14f)
         {
             indoorLightning.SetActive(false);
             outdoorLightning.SetActive(false);
         }
-        if(TimeOfDay > 45f)
+        if(TimeOfDay > 38f)
         {
             indoorLightning.SetActive(true);
             outdoorLightning.SetActive(true);
