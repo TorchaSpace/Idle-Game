@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using BreakInfinity;
 using static BreakInfinity.BigDouble;
 
-public class SellFish : MonoBehaviour
+public class SellFish : MonoBehaviour, IDataPersistence
 {
     public GameObject sellScreen;
 
@@ -21,17 +21,27 @@ public class SellFish : MonoBehaviour
         sellScreen.SetActive(!sellScreen.activeSelf);
     }
 
+    public void LoadData(GameData data)
+    {
+        this.gainedCoin = data.gainedCoin;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.gainedCoin = this.gainedCoin;
+    }
+
     private void Update()
     {
         if(gainedCoin > 1000)
         {
             var exponent = (Floor(Log10(Abs(gainedCoin))));
             var mantissa = (gainedCoin / Pow(10, exponent));
-            coinText.text = "Coins: " + mantissa.ToString("F2") + "e" + exponent;
+            coinText.text = mantissa.ToString("F2") + "e" + exponent;
         }
         else
         {
-            coinText.text = "Coins: " + gainedCoin.ToString("F0");
+            coinText.text = gainedCoin.ToString("F0");
 
         }
 

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using BreakInfinity;
-using System;
 using static BreakInfinity.BigDouble;
 
-public class GainCoinButton : MonoBehaviour
+public class GainCoinButton : MonoBehaviour, IDataPersistence
 {
     public GameObject upgradeMenu;
 
@@ -65,31 +64,31 @@ public class GainCoinButton : MonoBehaviour
     public BigDouble productionUpgrade1Level;
 
     public BigDouble productionUpgrade2Cost;
-    public BigDouble productionUpgrade2Power;
+    public BigDouble productionUpgrade2Power = 5;
     public BigDouble productionUpgrade2Level;
 
     public BigDouble productionUpgrade3Cost;
-    public BigDouble productionUpgrade3Power;
+    public BigDouble productionUpgrade3Power = 10;
     public BigDouble productionUpgrade3Level;
 
     public BigDouble productionUpgrade4Cost;
-    public BigDouble productionUpgrade4Power;
+    public BigDouble productionUpgrade4Power = 15;
     public BigDouble productionUpgrade4Level;
 
     public BigDouble productionUpgrade5Cost;
-    public BigDouble productionUpgrade5Power;
+    public BigDouble productionUpgrade5Power = 20;
     public BigDouble productionUpgrade5Level;
 
     public BigDouble productionUpgrade6Cost;
-    public BigDouble productionUpgrade6Power;
+    public BigDouble productionUpgrade6Power = 25;
     public BigDouble productionUpgrade6Level;
 
     public BigDouble productionUpgrade7Cost;
-    public BigDouble productionUpgrade7Power;
+    public BigDouble productionUpgrade7Power = 30;
     public BigDouble productionUpgrade7Level;
 
     public BigDouble productionUpgrade8Cost;
-    public BigDouble productionUpgrade8Power;
+    public BigDouble productionUpgrade8Power = 35;
     public BigDouble productionUpgrade8Level;
 
     public BigDouble coins;
@@ -107,120 +106,126 @@ public class GainCoinButton : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
-        Load();
-    }
-
-    public void Load()
-    {
-        coins = Parse(PlayerPrefs.GetString("coins", "0"));
-
-        coinsClickValue = Parse(PlayerPrefs.GetString("coinsClickValue", "1"));
-
-        gems = Parse(PlayerPrefs.GetString("gems", "0"));
-        gemBoost = Parse(PlayerPrefs.GetString("gemBoost", "1"));
-        
-
-
-        clickUpgrade1Cost = Parse(PlayerPrefs.GetString("clickUpgrade1Cost", "100"));
-        clickUpgrade2Cost = Parse(PlayerPrefs.GetString("clickUpgrade2Cost", "200"));
-        clickUpgrade3Cost = Parse(PlayerPrefs.GetString("clickUpgrade3Cost", "300"));
-        clickUpgrade4Cost = Parse(PlayerPrefs.GetString("clickUpgrade4Cost", "400"));
-        clickUpgrade5Cost = Parse(PlayerPrefs.GetString("clickUpgrade5Cost", "500"));
-        clickUpgrade6Cost = Parse(PlayerPrefs.GetString("clickUpgrade6Cost", "600"));
-        clickUpgrade7Cost = Parse(PlayerPrefs.GetString("clickUpgrade7Cost", "700"));
-        clickUpgrade8Cost = Parse(PlayerPrefs.GetString("clickUpgrade8Cost", "800"));
-
-        productionUpgrade1Cost = Parse(PlayerPrefs.GetString("productionUpgrade1Cost", "500"));
-        productionUpgrade2Cost = Parse(PlayerPrefs.GetString("productionUpgrade2Cost", "1000"));
-        productionUpgrade3Cost = Parse(PlayerPrefs.GetString("productionUpgrade3Cost", "1500"));
-        productionUpgrade4Cost = Parse(PlayerPrefs.GetString("productionUpgrade4Cost", "2000"));
-        productionUpgrade5Cost = Parse(PlayerPrefs.GetString("productionUpgrade5Cost", "3000"));
-        productionUpgrade6Cost = Parse(PlayerPrefs.GetString("productionUpgrade6Cost", "4000"));
-        productionUpgrade7Cost = Parse(PlayerPrefs.GetString("productionUpgrade7Cost", "5000"));
-        productionUpgrade8Cost = Parse(PlayerPrefs.GetString("productionUpgrade8Cost", "6000"));
-
-        productionUpgrade2Power = Parse(PlayerPrefs.GetString("productionUpgrade2Power", "5"));
-        productionUpgrade3Power = Parse(PlayerPrefs.GetString("productionUpgrade3Power", "10"));
-        productionUpgrade4Power = Parse(PlayerPrefs.GetString("productionUpgrade4Power", "15"));
-        productionUpgrade5Power = Parse(PlayerPrefs.GetString("productionUpgrade5Power", "20"));
-        productionUpgrade6Power = Parse(PlayerPrefs.GetString("productionUpgrade6Power", "25"));
-        productionUpgrade7Power = Parse(PlayerPrefs.GetString("productionUpgrade7Power", "30"));
-        productionUpgrade8Power = Parse(PlayerPrefs.GetString("productionUpgrade8Power", "35"));
-
-        clickUpgrade1Level = Parse(PlayerPrefs.GetString("clickUpgrade1Level", "0"));
-        clickUpgrade2Level = Parse(PlayerPrefs.GetString("clickUpgrade2Level", "0"));
-        clickUpgrade3Level = Parse(PlayerPrefs.GetString("clickUpgrade3Level", "0"));
-        clickUpgrade4Level = Parse(PlayerPrefs.GetString("clickUpgrade4Level", "0"));
-        clickUpgrade5Level = Parse(PlayerPrefs.GetString("clickUpgrade5Level", "0"));
-        clickUpgrade6Level = Parse(PlayerPrefs.GetString("clickUpgrade6Level", "0"));
-        clickUpgrade7Level = Parse(PlayerPrefs.GetString("clickUpgrade7Level", "0"));
-        clickUpgrade8Level = Parse(PlayerPrefs.GetString("clickUpgrade8Level", "0"));
-
-        productionUpgrade1Level = Parse(PlayerPrefs.GetString("productionUpgrade1Level", "0"));
-        productionUpgrade2Level = Parse(PlayerPrefs.GetString("productionUpgrade2Level", "0"));
-        productionUpgrade3Level = Parse(PlayerPrefs.GetString("productionUpgrade3Level", "0"));
-        productionUpgrade4Level = Parse(PlayerPrefs.GetString("productionUpgrade4Level", "0"));
-        productionUpgrade5Level = Parse(PlayerPrefs.GetString("productionUpgrade5Level", "0"));
-        productionUpgrade6Level = Parse(PlayerPrefs.GetString("productionUpgrade6Level", "0"));
-        productionUpgrade7Level = Parse(PlayerPrefs.GetString("productionUpgrade7Level", "0"));
-        productionUpgrade8Level = Parse(PlayerPrefs.GetString("productionUpgrade8Level", "0"));
-
+        productionUpgrade2Power = 5;
+        productionUpgrade3Power = 10;
+        productionUpgrade4Power = 15;
+        productionUpgrade5Power = 20;
+        productionUpgrade6Power = 25;
+        productionUpgrade7Power = 30;
+        productionUpgrade8Power = 35;
 
     }
 
-    public void Save()
+    public void LoadData(GameData data)
     {
-        PlayerPrefs.SetString("coins", coins.ToString());
+        this.coins = data.fish;
+        this.coinsClickValue = data.coinsClickValue;
+        this.coinsPerSec = data.coinsPerSec;
+        cardUpgrades = data.cardUpgrades;
 
-        PlayerPrefs.SetString("coinsClickValue", coinsClickValue.ToString());
+        this.gems = data.gems;
+        this.gemBoost = data.gemBoost;
 
-        PlayerPrefs.SetString("gems", gems.ToString());
-        PlayerPrefs.SetString("gemBoost", gemBoost.ToString());
+        this.productionUpgrade1Cost = data.productionUpgrade1Cost;
+        this.productionUpgrade2Cost = data.productionUpgrade2Cost;
+        this.productionUpgrade3Cost = data.productionUpgrade3Cost;
+        this.productionUpgrade4Cost = data.productionUpgrade4Cost;
+        this.productionUpgrade5Cost = data.productionUpgrade5Cost;
+        this.productionUpgrade6Cost = data.productionUpgrade6Cost;
+        this.productionUpgrade7Cost = data.productionUpgrade7Cost;
+        this.productionUpgrade8Cost = data.productionUpgrade8Cost;
 
-        PlayerPrefs.SetString("clickUpgrade1Cost", clickUpgrade1Cost.ToString());
-        PlayerPrefs.SetString("clickUpgrade2Cost", clickUpgrade2Cost.ToString());
-        PlayerPrefs.SetString("clickUpgrade3Cost", clickUpgrade3Cost.ToString());
-        PlayerPrefs.SetString("clickUpgrade4Cost", clickUpgrade4Cost.ToString());
-        PlayerPrefs.SetString("clickUpgrade5Cost", clickUpgrade5Cost.ToString());
-        PlayerPrefs.SetString("clickUpgrade6Cost", clickUpgrade6Cost.ToString());
-        PlayerPrefs.SetString("clickUpgrade7Cost", clickUpgrade7Cost.ToString());
-        PlayerPrefs.SetString("clickUpgrade8Cost", clickUpgrade8Cost.ToString());
+        this.productionUpgrade1Level = data.productionUpgrade1Level;
+        this.productionUpgrade2Level = data.productionUpgrade2Level;
+        this.productionUpgrade3Level = data.productionUpgrade3Level;
+        this.productionUpgrade4Level = data.productionUpgrade4Level;
+        this.productionUpgrade5Level = data.productionUpgrade5Level;
+        this.productionUpgrade6Level = data.productionUpgrade6Level;
+        this.productionUpgrade7Level = data.productionUpgrade7Level;
+        this.productionUpgrade8Level = data.productionUpgrade8Level;
 
-        PlayerPrefs.SetString("productionUpgrade1Cost", productionUpgrade1Cost.ToString());
-        PlayerPrefs.SetString("productionUpgrade2Cost", productionUpgrade2Cost.ToString());
-        PlayerPrefs.SetString("productionUpgrade3Cost", productionUpgrade3Cost.ToString());
-        PlayerPrefs.SetString("productionUpgrade4Cost", productionUpgrade4Cost.ToString());
-        PlayerPrefs.SetString("productionUpgrade5Cost", productionUpgrade5Cost.ToString());
-        PlayerPrefs.SetString("productionUpgrade6Cost", productionUpgrade6Cost.ToString());
-        PlayerPrefs.SetString("productionUpgrade7Cost", productionUpgrade7Cost.ToString());
-        PlayerPrefs.SetString("productionUpgrade8Cost", productionUpgrade8Cost.ToString());
+        this.productionUpgrade2Power = data.productionUpgrade2Power;
+        this.productionUpgrade3Power = data.productionUpgrade3Power;
+        this.productionUpgrade4Power = data.productionUpgrade4Power;
+        this.productionUpgrade5Power = data.productionUpgrade5Power;
+        this.productionUpgrade6Power = data.productionUpgrade6Power;
+        this.productionUpgrade7Power = data.productionUpgrade7Power;
+        this.productionUpgrade8Power = data.productionUpgrade8Power;
 
-        PlayerPrefs.SetString("productionUpgrade2Power", productionUpgrade2Power.ToString());
-        PlayerPrefs.SetString("productionUpgrade3Power", productionUpgrade3Power.ToString());
-        PlayerPrefs.SetString("productionUpgrade4Power", productionUpgrade4Power.ToString());
-        PlayerPrefs.SetString("productionUpgrade5Power", productionUpgrade5Power.ToString());
-        PlayerPrefs.SetString("productionUpgrade6Power", productionUpgrade6Power.ToString());
-        PlayerPrefs.SetString("productionUpgrade7Power", productionUpgrade7Power.ToString());
-        PlayerPrefs.SetString("productionUpgrade8Power", productionUpgrade8Power.ToString());
+        this.clickUpgrade1Level = data.clickUpgrade1Level;
+        this.clickUpgrade2Level = data.clickUpgrade2Level;
+        this.clickUpgrade3Level = data.clickUpgrade3Level;
+        this.clickUpgrade4Level = data.clickUpgrade4Level;
+        this.clickUpgrade5Level = data.clickUpgrade5Level;
+        this.clickUpgrade6Level = data.clickUpgrade6Level;
+        this.clickUpgrade7Level = data.clickUpgrade7Level;
+        this.clickUpgrade8Level = data.clickUpgrade8Level;
 
-        PlayerPrefs.SetString("clickUpgrade1Level", clickUpgrade1Level.ToString());
-        PlayerPrefs.SetString("clickUpgrade2Level", clickUpgrade2Level.ToString());
-        PlayerPrefs.SetString("clickUpgrade3Level", clickUpgrade3Level.ToString());
-        PlayerPrefs.SetString("clickUpgrade4Level", clickUpgrade4Level.ToString());
-        PlayerPrefs.SetString("clickUpgrade5Level", clickUpgrade5Level.ToString());
-        PlayerPrefs.SetString("clickUpgrade6Level", clickUpgrade6Level.ToString());
-        PlayerPrefs.SetString("clickUpgrade7Level", clickUpgrade7Level.ToString());
-        PlayerPrefs.SetString("clickUpgrade8Level", clickUpgrade8Level.ToString());
+        this.clickUpgrade1Cost = data.clickUpgrade1Cost;
+        this.clickUpgrade2Cost = data.clickUpgrade2Cost;
+        this.clickUpgrade3Cost = data.clickUpgrade3Cost;
+        this.clickUpgrade4Cost = data.clickUpgrade4Cost;
+        this.clickUpgrade5Cost = data.clickUpgrade5Cost;
+        this.clickUpgrade6Cost = data.clickUpgrade6Cost;
+        this.clickUpgrade7Cost = data.clickUpgrade7Cost;
+        this.clickUpgrade8Cost = data.clickUpgrade8Cost;
 
-        PlayerPrefs.SetString("productionUpgrade1Level", productionUpgrade1Level.ToString());
-        PlayerPrefs.SetString("productionUpgrade2Level", productionUpgrade2Level.ToString());
-        PlayerPrefs.SetString("productionUpgrade3Level", productionUpgrade3Level.ToString());
-        PlayerPrefs.SetString("productionUpgrade4Level", productionUpgrade4Level.ToString());
-        PlayerPrefs.SetString("productionUpgrade5Level", productionUpgrade5Level.ToString());
-        PlayerPrefs.SetString("productionUpgrade6Level", productionUpgrade6Level.ToString());
-        PlayerPrefs.SetString("productionUpgrade7Level", productionUpgrade7Level.ToString());
-        PlayerPrefs.SetString("productionUpgrade8Level", productionUpgrade8Level.ToString());
+    }
+    
 
+    public void SaveData(ref GameData data)
+    {
+        data.fish = this.coins;
+        data.coinsClickValue = this.coinsClickValue;
+        data.coinsPerSec = this.coinsPerSec;
+        data.cardUpgrades = cardUpgrades;
+
+        data.gems = this.gems;
+        data.gemBoost = this.gemBoost;
+
+        data.productionUpgrade1Cost = this.productionUpgrade1Cost;
+        data.productionUpgrade2Cost = this.productionUpgrade2Cost;
+        data.productionUpgrade3Cost = this.productionUpgrade3Cost;
+        data.productionUpgrade4Cost = this.productionUpgrade4Cost;
+        data.productionUpgrade5Cost = this.productionUpgrade5Cost;
+        data.productionUpgrade6Cost = this.productionUpgrade6Cost;
+        data.productionUpgrade7Cost = this.productionUpgrade7Cost;
+        data.productionUpgrade8Cost = this.productionUpgrade8Cost;
+
+        data.productionUpgrade1Level = this.productionUpgrade1Level;
+        data.productionUpgrade2Level = this.productionUpgrade2Level;
+        data.productionUpgrade3Level = this.productionUpgrade3Level;
+        data.productionUpgrade4Level = this.productionUpgrade4Level;
+        data.productionUpgrade5Level = this.productionUpgrade5Level;
+        data.productionUpgrade6Level = this.productionUpgrade6Level;
+        data.productionUpgrade7Level = this.productionUpgrade7Level;
+        data.productionUpgrade8Level = this.productionUpgrade8Level;
+
+        data.productionUpgrade2Power = this.productionUpgrade2Power;
+        data.productionUpgrade3Power = this.productionUpgrade3Power;
+        data.productionUpgrade4Power = this.productionUpgrade4Power;
+        data.productionUpgrade5Power = this.productionUpgrade5Power;
+        data.productionUpgrade6Power = this.productionUpgrade6Power;
+        data.productionUpgrade7Power = this.productionUpgrade7Power;
+        data.productionUpgrade8Power = this.productionUpgrade8Power;
+
+        data.clickUpgrade1Level = this.clickUpgrade1Level;
+        data.clickUpgrade2Level = this.clickUpgrade2Level;
+        data.clickUpgrade3Level = this.clickUpgrade3Level;
+        data.clickUpgrade4Level = this.clickUpgrade4Level;
+        data.clickUpgrade5Level = this.clickUpgrade5Level;
+        data.clickUpgrade6Level = this.clickUpgrade6Level;
+        data.clickUpgrade7Level = this.clickUpgrade7Level;
+        data.clickUpgrade8Level = this.clickUpgrade8Level;
+
+        data.clickUpgrade1Cost = this.clickUpgrade1Cost;
+        data.clickUpgrade2Cost = this.clickUpgrade2Cost;
+        data.clickUpgrade3Cost = this.clickUpgrade3Cost;
+        data.clickUpgrade4Cost = this.clickUpgrade4Cost;
+        data.clickUpgrade5Cost = this.clickUpgrade5Cost;
+        data.clickUpgrade6Cost = this.clickUpgrade6Cost;
+        data.clickUpgrade7Cost = this.clickUpgrade7Cost;
+        data.clickUpgrade8Cost = this.clickUpgrade8Cost;
     }
 
     private void Update()
@@ -229,7 +234,7 @@ public class GainCoinButton : MonoBehaviour
         gemBoost = (gems * 0.05) + 1;
 
         gemsToGetText.text = "Prestige:\n+" + Floor(gemsToGet).ToString("F0") + " Gems";
-        gemsText.text = "Gems: " + Floor(gems).ToString("F0");
+        gemsText.text = Floor(gems).ToString("F0");
         gemBoostText.text = gemBoost.ToString("F2") + "x boost";
 
         coinsPerSec = (productionUpgrade1Level + (productionUpgrade2Power * productionUpgrade2Level) +
@@ -238,7 +243,7 @@ public class GainCoinButton : MonoBehaviour
             (productionUpgrade7Power * productionUpgrade7Level) + (productionUpgrade8Power * productionUpgrade8Level)) * gemBoost + cardUpgrades;
 
         clickValueText.text = "Click\n+" + NotationMethod(coinsClickValue, y: "F0") + " Coins";
-        coinText.text = "Coins: " + NotationMethod(coins, y: "F0");       
+        coinText.text = "Fish: " + NotationMethod(coins, y: "F0");       
         coinPerSecText.text = coinsPerSec.ToString("F0") + " fish/s";
 
         #region ClickUpgradeText
@@ -375,7 +380,7 @@ public class GainCoinButton : MonoBehaviour
 
         coins += coinsPerSec * Time.deltaTime;
 
-        Save();
+    
     }
 
     public string NotationMethod(BigDouble x, string y)
@@ -589,6 +594,6 @@ public class GainCoinButton : MonoBehaviour
     public void OpenUpgradeMenu()
     {
         upgradeMenu.SetActive(!upgradeMenu.activeSelf);
-    }    
+    }
 }
 

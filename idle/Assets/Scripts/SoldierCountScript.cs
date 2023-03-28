@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BreakInfinity;
+using static BreakInfinity.BigDouble;
 
-public class SoldierCountScript : MonoBehaviour
+public class SoldierCountScript : MonoBehaviour, IDataPersistence
 {
     [Header("UI")]
     public Text soldierPower1Text;
@@ -20,47 +22,77 @@ public class SoldierCountScript : MonoBehaviour
     public HealthAndPriates healthAndPriates;
 
     [Header("Soldier Upgrade")]
-    public double soldierUpgrade1Cost;
-    public int soldierUpgrade1Level;
+    public BigDouble soldierUpgrade1Cost;
+    public BigDouble soldierUpgrade1Level;
 
-    public double soldierUpgrade2Cost;
-    public int soldierUpgrade2Level;
+    public BigDouble soldierUpgrade2Cost;
+    public BigDouble soldierUpgrade2Level;
 
-    public double soldierUpgrade3Cost;
-    public int soldierUpgrade3Level;
+    public BigDouble soldierUpgrade3Cost;
+    public BigDouble soldierUpgrade3Level;
 
-    public double soldierUpgrade4Cost;
-    public int soldierUpgrade4Level;
+    public BigDouble soldierUpgrade4Cost;
+    public BigDouble soldierUpgrade4Level;
 
-    public double soldierUpgrade5Cost;
-    public int soldierUpgrade5Level;
+    public BigDouble soldierUpgrade5Cost;
+    public BigDouble soldierUpgrade5Level;
 
-    public double soldierUpgrade6Cost;
-    public int soldierUpgrade6Level;
+    public BigDouble soldierUpgrade6Cost;
+    public BigDouble soldierUpgrade6Level;
 
-    public double soldierUpgrade7Cost;
-    public int soldierUpgrade7Level;
+    public BigDouble soldierUpgrade7Cost;
+    public BigDouble soldierUpgrade7Level;
 
-    public double soldierUpgrade8Cost;
-    public int soldierUpgrade8Level;
+    public BigDouble soldierUpgrade8Cost;
+    public BigDouble soldierUpgrade8Level;
 
-    private void Start()
+    public void LoadData(GameData data)
     {
-        soldierUpgrade1Cost = 500;
-        soldierUpgrade2Cost = 1000;
-        soldierUpgrade3Cost = 1500;
-        soldierUpgrade4Cost = 2000;
-        soldierUpgrade5Cost = 2500;
-        soldierUpgrade6Cost = 3000;
-        soldierUpgrade7Cost = 3500;
-        soldierUpgrade8Cost = 4000;
+        this.soldierUpgrade1Cost = data.soldierUpgrade1Cost;
+        this.soldierUpgrade2Cost = data.soldierUpgrade2Cost;
+        this.soldierUpgrade3Cost = data.soldierUpgrade3Cost;
+        this.soldierUpgrade4Cost = data.soldierUpgrade4Cost;
+        this.soldierUpgrade5Cost = data.soldierUpgrade5Cost;
+        this.soldierUpgrade6Cost = data.soldierUpgrade6Cost;
+        this.soldierUpgrade7Cost = data.soldierUpgrade7Cost;
+        this.soldierUpgrade8Cost = data.soldierUpgrade8Cost;
+
+        this.soldierUpgrade1Level = data.soldierUpgrade1Level;
+        this.soldierUpgrade2Level = data.soldierUpgrade2Level;
+        this.soldierUpgrade3Level = data.soldierUpgrade3Level;
+        this.soldierUpgrade4Level = data.soldierUpgrade4Level;
+        this.soldierUpgrade5Level = data.soldierUpgrade5Level;
+        this.soldierUpgrade6Level = data.soldierUpgrade6Level;
+        this.soldierUpgrade7Level = data.soldierUpgrade7Level;
+        this.soldierUpgrade8Level = data.soldierUpgrade8Level;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.soldierUpgrade1Cost = this.soldierUpgrade1Cost;
+        data.soldierUpgrade2Cost = this.soldierUpgrade2Cost;
+        data.soldierUpgrade3Cost = this.soldierUpgrade3Cost;
+        data.soldierUpgrade4Cost = this.soldierUpgrade4Cost;
+        data.soldierUpgrade5Cost = this.soldierUpgrade5Cost;
+        data.soldierUpgrade6Cost = this.soldierUpgrade6Cost;
+        data.soldierUpgrade7Cost = this.soldierUpgrade7Cost;
+        data.soldierUpgrade8Cost = this.soldierUpgrade8Cost;
+
+        data.soldierUpgrade1Level = this.soldierUpgrade1Level;
+        data.soldierUpgrade2Level = this.soldierUpgrade2Level;
+        data.soldierUpgrade3Level = this.soldierUpgrade3Level;
+        data.soldierUpgrade4Level = this.soldierUpgrade4Level;
+        data.soldierUpgrade5Level = this.soldierUpgrade5Level;
+        data.soldierUpgrade6Level = this.soldierUpgrade6Level;
+        data.soldierUpgrade7Level = this.soldierUpgrade7Level;
+        data.soldierUpgrade8Level = this.soldierUpgrade8Level;
     }
 
     private void Update()
     {
-        if(healthAndPriates.GuardCount < 100)
+        if (healthAndPriates.GuardCount < 100)
         {
-            soldierPower1Text.text = "Add Soldier 1\nCost: " + soldierUpgrade1Cost + " Coin\nPower: +1 Soldier\nLevel: " + soldierUpgrade1Level; 
+            soldierPower1Text.text = "Add Soldier 1\nCost: " + soldierUpgrade1Cost + " Coin\nPower: +1 Soldier\nLevel: " + soldierUpgrade1Level;
         }
         else
         {
@@ -131,91 +163,82 @@ public class SoldierCountScript : MonoBehaviour
         }
     }
 
-    public void BuySoldierUpgrade1()
+    public void BuyUpgrade(string upgradeID)
     {
-        if(sellFish.gainedCoin >= soldierUpgrade1Cost && healthAndPriates.GuardCount < 100)
+        switch (upgradeID)
         {
-            soldierUpgrade1Level++;
-            sellFish.gainedCoin -= soldierUpgrade1Cost;
-            healthAndPriates.GuardCount += 1;
-            soldierUpgrade1Cost *= 1.09;
+            case "S1":
+                if (sellFish.gainedCoin >= soldierUpgrade1Cost && healthAndPriates.GuardCount < 100)
+                {
+                    soldierUpgrade1Level++;
+                    sellFish.gainedCoin -= soldierUpgrade1Cost;
+                    healthAndPriates.GuardCount += 1;
+                    soldierUpgrade1Cost *= 1.09;
+                }
+                break;
+            case "S2":
+                if (sellFish.gainedCoin >= soldierUpgrade2Cost && healthAndPriates.GuardCount < 100)
+                {
+                    soldierUpgrade2Level++;
+                    sellFish.gainedCoin -= soldierUpgrade2Cost;
+                    healthAndPriates.GuardCount += 2;
+                }
+                break;
+            case "S3":
+                if (sellFish.gainedCoin >= soldierUpgrade3Cost && healthAndPriates.GuardCount < 100)
+                {
+                    soldierUpgrade3Level++;
+                    sellFish.gainedCoin -= soldierUpgrade3Cost;
+                    healthAndPriates.GuardCount += 3;
+                    soldierUpgrade3Cost *= 2.06;
+                }
+                break;
+            case "S4":
+                if (sellFish.gainedCoin >= soldierUpgrade4Cost && healthAndPriates.GuardCount < 100)
+                {
+                    soldierUpgrade4Level++;
+                    sellFish.gainedCoin -= soldierUpgrade4Cost;
+                    healthAndPriates.GuardCount += 4;
+                    soldierUpgrade4Cost *= 2.09;
+                }
+                break;
+            case "S5":
+                if (sellFish.gainedCoin >= soldierUpgrade5Cost && healthAndPriates.GuardCount < 100)
+                {
+                    soldierUpgrade5Level++;
+                    sellFish.gainedCoin -= soldierUpgrade5Cost;
+                    healthAndPriates.GuardCount += 5;
+                    soldierUpgrade5Cost *= 3.03;
+                }
+                break;
+            case "S6":
+                if (sellFish.gainedCoin >= soldierUpgrade6Cost && healthAndPriates.GuardCount < 100)
+                {
+                    soldierUpgrade6Level++;
+                    sellFish.gainedCoin -= soldierUpgrade6Cost;
+                    healthAndPriates.GuardCount += 6;
+                    soldierUpgrade6Cost *= 3.06;
+                }
+                break;
+            case "S7":
+                if (sellFish.gainedCoin >= soldierUpgrade7Cost && healthAndPriates.GuardCount < 100)
+                {
+                    soldierUpgrade7Level++;
+                    sellFish.gainedCoin -= soldierUpgrade7Cost;
+                    healthAndPriates.GuardCount += 7;
+                    soldierUpgrade7Cost *= 3.09;
+                }
+                break;
+            case "S8":
+                if (sellFish.gainedCoin >= soldierUpgrade8Cost && healthAndPriates.GuardCount < 100)
+                {
+                    soldierUpgrade8Level++;
+                    sellFish.gainedCoin -= soldierUpgrade8Cost;
+                    healthAndPriates.GuardCount += 8;
+                    soldierUpgrade8Cost *= 4.03;
+                }
+                break;
         }
     }
 
-    public void BuySoldierUpgrade2()
-    {
-        if (sellFish.gainedCoin >= soldierUpgrade2Cost && healthAndPriates.GuardCount < 100)
-        {
-            soldierUpgrade2Level++;
-            sellFish.gainedCoin -= soldierUpgrade2Cost;
-            healthAndPriates.GuardCount += 2;
-            soldierUpgrade2Cost *= 2.03;
-        }
-    }
-
-    public void BuySoldierUpgrade3()
-    {
-        if (sellFish.gainedCoin >= soldierUpgrade3Cost && healthAndPriates.GuardCount < 100)
-        {
-            soldierUpgrade3Level++;
-            sellFish.gainedCoin -= soldierUpgrade3Cost;
-            healthAndPriates.GuardCount += 3;
-            soldierUpgrade3Cost *= 2.06;
-        }
-    }
-
-    public void BuySoldierUpgrade4()
-    {
-        if (sellFish.gainedCoin >= soldierUpgrade4Cost && healthAndPriates.GuardCount < 100)
-        {
-            soldierUpgrade4Level++;
-            sellFish.gainedCoin -= soldierUpgrade4Cost;
-            healthAndPriates.GuardCount += 4;
-            soldierUpgrade4Cost *= 2.09;
-        }
-    }
-
-    public void BuySoldierUpgrade5()
-    {
-        if (sellFish.gainedCoin >= soldierUpgrade5Cost && healthAndPriates.GuardCount < 100)
-        {
-            soldierUpgrade5Level++;
-            sellFish.gainedCoin -= soldierUpgrade5Cost;
-            healthAndPriates.GuardCount += 5;
-            soldierUpgrade5Cost *= 3.03;
-        }
-    }
-
-    public void BuySoldierUpgrade6()
-    {
-        if (sellFish.gainedCoin >= soldierUpgrade6Cost && healthAndPriates.GuardCount < 100)
-        {
-            soldierUpgrade6Level++;
-            sellFish.gainedCoin -= soldierUpgrade6Cost;
-            healthAndPriates.GuardCount += 6;
-            soldierUpgrade6Cost *= 3.06;
-        }
-    }
-
-    public void BuySoldierUpgrade7()
-    {
-        if (sellFish.gainedCoin >= soldierUpgrade7Cost && healthAndPriates.GuardCount < 100)
-        {
-            soldierUpgrade7Level++;
-            sellFish.gainedCoin -= soldierUpgrade7Cost;
-            healthAndPriates.GuardCount += 7;
-            soldierUpgrade7Cost *= 3.09;
-        }
-    }
-
-    public void BuySoldierUpgrade8()
-    {
-        if (sellFish.gainedCoin >= soldierUpgrade8Cost && healthAndPriates.GuardCount < 100)
-        {
-            soldierUpgrade8Level++;
-            sellFish.gainedCoin -= soldierUpgrade8Cost;
-            healthAndPriates.GuardCount += 8;
-            soldierUpgrade8Cost *= 4.03;
-        }
-    }
 }

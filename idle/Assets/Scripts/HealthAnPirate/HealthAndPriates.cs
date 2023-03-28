@@ -1,13 +1,14 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BreakInfinity;
 
-public class HealthAndPriates : MonoBehaviour
+public class HealthAndPriates : MonoBehaviour, IDataPersistence
 {
     public GainCoinButton gainCoinButton;
 
-    public static int health = 3;
+    public static int health;
 
     public float pirateArriveTime = 10;
 
@@ -19,8 +20,8 @@ public class HealthAndPriates : MonoBehaviour
 
     public Text winChanceText;
 
-    public int defencePower = 1;
-    public int GuardCount = 1;
+    public int defencePower;
+    public int GuardCount;
     public int korsanPower;
 
     public int a;
@@ -29,7 +30,7 @@ public class HealthAndPriates : MonoBehaviour
     public float winChance;
     public int c;
 
-    public int reducedPower = 0;
+    public int reducedPower;
 
     public SellFish sellFish;
 
@@ -44,7 +45,7 @@ public class HealthAndPriates : MonoBehaviour
 
     public Text winLoseText;
 
-    public int takenMoney = 5000;
+    public BigDouble takenMoney;
     public Text moneyPayText;
 
     private void Update()
@@ -126,6 +127,24 @@ public class HealthAndPriates : MonoBehaviour
         }
     }
 
+    public void LoadData(GameData data)
+    {
+        this.defencePower = data.defencePower;
+        this.GuardCount = data.GuardCount;
+        this.reducedPower = data.reducePower;
+        this.takenMoney = data.takenMoney;
+        health = data.health;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.defencePower = this.defencePower;
+        data.GuardCount = this.GuardCount;
+        data.reducePower = this.reducedPower;
+        data.takenMoney = this.takenMoney;
+        data.health = health;
+    }
+
     public void Attack()
     {
         
@@ -185,6 +204,8 @@ public class HealthAndPriates : MonoBehaviour
         if (a < b || ((a - b / a + b) * 100) <= 0 || c == 2)
         {
             winLoseText.text = "You Lost!";
+            pirateGameUI.SetActive(false);
+            Time.timeScale = 1;
             StartCoroutine(YouLose());
         }
         else
@@ -266,4 +287,6 @@ public class HealthAndPriates : MonoBehaviour
             GuardCount--;
         }
     }
+
+    
 }
