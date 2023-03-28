@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BreakInfinity;
+using static BreakInfinity.BigDouble;
 
 public class SellFish : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class SellFish : MonoBehaviour
 
     public GainCoinButton gainCoinButton;
 
-    public double gainedCoin;
+    public BigDouble gainedCoin;
     public Text coinText;
 
     public void GemıButton()
@@ -23,8 +25,8 @@ public class SellFish : MonoBehaviour
     {
         if(gainedCoin > 1000)
         {
-            var exponent = (System.Math.Floor(System.Math.Log10(System.Math.Abs(gainedCoin))));
-            var mantissa = (gainedCoin / System.Math.Pow(10, exponent));
+            var exponent = (Floor(Log10(Abs(gainedCoin))));
+            var mantissa = (gainedCoin / Pow(10, exponent));
             coinText.text = "Coins: " + mantissa.ToString("F2") + "e" + exponent;
         }
         else
@@ -35,8 +37,8 @@ public class SellFish : MonoBehaviour
 
         if (gainCoinButton.coins > 1000)
         {
-            var exponent = (System.Math.Floor(System.Math.Log10(System.Math.Abs(gainCoinButton.coins))));
-            var mantissa = (gainCoinButton.coins / System.Math.Pow(10, exponent));
+            var exponent = (Floor(Log10(Abs(gainCoinButton.coins))));
+            var mantissa = (gainCoinButton.coins / Pow(10, exponent));
             fishToCoinCountText.text = "Fish: " + mantissa.ToString("F2") + "e" + exponent + " = " + "Coins: " + (gainCoinButton.coins * 0.5f).ToString("F0");
         }
         else
