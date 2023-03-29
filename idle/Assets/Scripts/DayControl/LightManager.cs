@@ -9,8 +9,7 @@ public class LightManager : MonoBehaviour
     [SerializeField] private DayControl dayControl;
     [SerializeField, Range(0, 60)] private float TimeOfDay;
 
-    public GameObject indoorLightning;
-    public GameObject outdoorLightning;
+   
 
     private void Update()
     {
@@ -28,17 +27,6 @@ public class LightManager : MonoBehaviour
         else
         {
             UpdateLightning(TimeOfDay / 60f);
-        }
-
-        if(TimeOfDay > 14f)
-        {
-            indoorLightning.SetActive(false);
-            outdoorLightning.SetActive(false);
-        }
-        if(TimeOfDay > 38f)
-        {
-            indoorLightning.SetActive(true);
-            outdoorLightning.SetActive(true);
         }
     }
 

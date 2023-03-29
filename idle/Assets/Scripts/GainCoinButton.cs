@@ -9,6 +9,11 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
 {
     public GameObject upgradeMenu;
 
+    public HealthAndPriates healthAndPriates;
+    public SellFish sellFish;
+    public DefencePowerController defencePowerController;
+    public SoldierCountScript soldierCountScript;
+
     [Header("UI")]
     public Text coinText;
     public Text clickValueText;
@@ -105,7 +110,6 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
-        Application.targetFrameRate = 60;
         productionUpgrade2Power = 5;
         productionUpgrade3Power = 10;
         productionUpgrade4Power = 15;
@@ -113,7 +117,6 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         productionUpgrade6Power = 25;
         productionUpgrade7Power = 30;
         productionUpgrade8Power = 35;
-
     }
 
     public void LoadData(GameData data)
@@ -242,8 +245,8 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
             (productionUpgrade5Power * productionUpgrade5Level) + (productionUpgrade6Power * productionUpgrade6Level) +
             (productionUpgrade7Power * productionUpgrade7Level) + (productionUpgrade8Power * productionUpgrade8Level)) * gemBoost + cardUpgrades;
 
-        clickValueText.text = "Click\n+" + NotationMethod(coinsClickValue, y: "F0") + " Coins";
-        coinText.text = "Fish: " + NotationMethod(coins, y: "F0");       
+        clickValueText.text = "+" + NotationMethod(coinsClickValue, y: "F0") + " Click";
+        coinText.text = NotationMethod(coins, y: "F0");       
         coinPerSecText.text = coinsPerSec.ToString("F0") + " fish/s";
 
         #region ClickUpgradeText
@@ -327,7 +330,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         string productionUpgrade2LevelString;
         productionUpgrade2LevelString = NotationMethod(productionUpgrade2Level, y: "F0");
 
-        productionUpgrade2Text.text = "Production Upgrade 2\nCost: " + productionUpgrade2CostString + " Fish\nPower: "+ productionUpgrade2Power * gemBoost + " fish/s\nLevel: "+ productionUpgrade2LevelString;
+        productionUpgrade2Text.text = "Production Upgrade 2\nCost: " + productionUpgrade2CostString + " Fish\nPower: "+ (productionUpgrade2Power * gemBoost).ToString("F0") + " fish/s\nLevel: "+ productionUpgrade2LevelString;
 
         string productionUpgrade3CostString;
         productionUpgrade3CostString = NotationMethod(productionUpgrade3Cost, y: "F0");
@@ -335,7 +338,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         string productionUpgrade3LevelString;
         productionUpgrade3LevelString = NotationMethod(productionUpgrade3Level, y: "F0");
 
-        productionUpgrade3Text.text = "Production Upgrade 3\nCost: " + productionUpgrade3CostString + " Fish\nPower: "+ productionUpgrade3Power * gemBoost + " fish/s\nLevel: " + productionUpgrade3LevelString;
+        productionUpgrade3Text.text = "Production Upgrade 3\nCost: " + productionUpgrade3CostString + " Fish\nPower: "+ (productionUpgrade3Power * gemBoost).ToString("F0") + " fish/s\nLevel: " + productionUpgrade3LevelString;
 
         string productionUpgrade4CostString;
         productionUpgrade4CostString = NotationMethod(productionUpgrade4Cost, y: "F0");
@@ -343,7 +346,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         string productionUpgrade4LevelString;
         productionUpgrade4LevelString = NotationMethod(productionUpgrade4Level, y: "F0");
 
-        productionUpgrade4Text.text = "Production Upgrade 4\nCost: " + productionUpgrade4CostString + " Fish\nPower: " + productionUpgrade4Power * gemBoost + " fish/s\nLevel: " + productionUpgrade4LevelString;
+        productionUpgrade4Text.text = "Production Upgrade 4\nCost: " + productionUpgrade4CostString + " Fish\nPower: " + (productionUpgrade4Power * gemBoost).ToString("F0") + " fish/s\nLevel: " + productionUpgrade4LevelString;
 
         string productionUpgrade5CostString;
         productionUpgrade5CostString = NotationMethod(productionUpgrade5Cost, y: "F0");
@@ -351,7 +354,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         string productionUpgrade5LevelString;
         productionUpgrade5LevelString = NotationMethod(productionUpgrade5Level, y: "F0");
 
-        productionUpgrade5Text.text = "Production Upgrade 5\nCost: " + productionUpgrade5CostString + " Fish\nPower: " + productionUpgrade5Power * gemBoost + " fish/s\nLevel: " + productionUpgrade5LevelString;
+        productionUpgrade5Text.text = "Production Upgrade 5\nCost: " + productionUpgrade5CostString + " Fish\nPower: " + (productionUpgrade5Power * gemBoost).ToString("F0") + " fish/s\nLevel: " + productionUpgrade5LevelString;
 
         string productionUpgrade6CostString;
         productionUpgrade6CostString = NotationMethod(productionUpgrade6Cost, y: "F0");
@@ -359,7 +362,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         string productionUpgrade6LevelString;
         productionUpgrade6LevelString = NotationMethod(productionUpgrade6Level, y: "F0");
 
-        productionUpgrade6Text.text = "Production Upgrade 6\nCost: " + productionUpgrade6CostString + " Fish\nPower: " + productionUpgrade6Power * gemBoost + " fish/s\nLevel: " + productionUpgrade6LevelString;
+        productionUpgrade6Text.text = "Production Upgrade 6\nCost: " + productionUpgrade6CostString + " Fish\nPower: " + (productionUpgrade6Power * gemBoost).ToString("F0") + " fish/s\nLevel: " + productionUpgrade6LevelString;
 
         string productionUpgrade7CostString;
         productionUpgrade7CostString = NotationMethod(productionUpgrade7Cost, y: "F0");
@@ -367,7 +370,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         string productionUpgrade7LevelString;
         productionUpgrade7LevelString = NotationMethod(productionUpgrade7Level, y: "F0");
 
-        productionUpgrade7Text.text = "Production Upgrade 7\nCost: " + productionUpgrade7CostString + " Fish\nPower: " + productionUpgrade7Power * gemBoost + " fish/s\nLevel: " + productionUpgrade7LevelString;
+        productionUpgrade7Text.text = "Production Upgrade 7\nCost: " + productionUpgrade7CostString + " Fish\nPower: " + (productionUpgrade7Power * gemBoost).ToString("F0") + " fish/s\nLevel: " + productionUpgrade7LevelString;
 
         string productionUpgrade8CostString;
         productionUpgrade8CostString = NotationMethod(productionUpgrade8Cost, y: "F0");
@@ -375,7 +378,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         string productionUpgrade8LevelString;
         productionUpgrade8LevelString = NotationMethod(productionUpgrade8Level, y: "F0");
 
-        productionUpgrade8Text.text = "Production Upgrade 8\nCost: " + productionUpgrade8CostString + " Fish\nPower: " + productionUpgrade8Power * gemBoost + " fish/s\nLevel: " + productionUpgrade8LevelString;
+        productionUpgrade8Text.text = "Production Upgrade 8\nCost: " + productionUpgrade8CostString + " Fish\nPower: " + (productionUpgrade8Power * gemBoost).ToString("F0") + " fish/s\nLevel: " + productionUpgrade8LevelString;
         #endregion
 
         coins += coinsPerSec * Time.deltaTime;
@@ -589,6 +592,99 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
 
             gems += gemsToGet;
         }
+    }
+
+    public void FullReset()
+    {
+        gemBoost = 1;
+
+        gems = 0;
+
+        coins = 0;
+        coinsClickValue = 1;
+        coinsPerSec = 0;
+        cardUpgrades = 0;
+
+        clickUpgrade1Cost = 100;
+        clickUpgrade2Cost = 200;
+        clickUpgrade3Cost = 300;
+        clickUpgrade4Cost = 400;
+        clickUpgrade5Cost = 500;
+        clickUpgrade6Cost = 600;
+        clickUpgrade7Cost = 700;
+        clickUpgrade8Cost = 800;
+
+        productionUpgrade1Cost = 500;
+        productionUpgrade2Cost = 1000;
+        productionUpgrade3Cost = 1500;
+        productionUpgrade4Cost = 2000;
+        productionUpgrade5Cost = 2500;
+        productionUpgrade6Cost = 3000;
+        productionUpgrade7Cost = 3500;
+        productionUpgrade8Cost = 4000;
+
+        clickUpgrade1Level = 0;
+        clickUpgrade2Level = 0;
+        clickUpgrade3Level = 0;
+        clickUpgrade4Level = 0;
+        clickUpgrade5Level = 0;
+        clickUpgrade6Level = 0;
+        clickUpgrade7Level = 0;
+        clickUpgrade8Level = 0;
+
+        productionUpgrade1Level = 0;
+        productionUpgrade2Level = 0;
+        productionUpgrade3Level = 0;
+        productionUpgrade4Level = 0;
+        productionUpgrade5Level = 0;
+        productionUpgrade6Level = 0;
+        productionUpgrade7Level = 0;
+        productionUpgrade8Level = 0;
+
+        healthAndPriates.reducedPower = 0;
+        healthAndPriates.GuardCount = 1;
+        healthAndPriates.defencePower = 1;
+        healthAndPriates.takenMoney = 5000;
+
+        sellFish.gainedCoin = 0;
+
+        defencePowerController.defenceUpgrade1Level = 0;
+        defencePowerController.defenceUpgrade2Level = 0;
+        defencePowerController.defenceUpgrade3Level = 0;
+        defencePowerController.defenceUpgrade4Level = 0;
+        defencePowerController.defenceUpgrade5Level = 0;
+        defencePowerController.defenceUpgrade6Level = 0;
+        defencePowerController.defenceUpgrade7Level = 0;
+        defencePowerController.defenceUpgrade8Level = 0;
+
+        defencePowerController.defenceUpgrade1Cost = 100;
+        defencePowerController.defenceUpgrade2Cost = 200;
+        defencePowerController.defenceUpgrade3Cost = 300;
+        defencePowerController.defenceUpgrade4Cost = 400;
+        defencePowerController.defenceUpgrade5Cost = 500;
+        defencePowerController.defenceUpgrade6Cost = 600;
+        defencePowerController.defenceUpgrade7Cost = 700;
+        defencePowerController.defenceUpgrade8Cost = 800;
+
+        soldierCountScript.soldierUpgrade1Level = 0;
+        soldierCountScript.soldierUpgrade2Level = 0;
+        soldierCountScript.soldierUpgrade3Level = 0;
+        soldierCountScript.soldierUpgrade4Level = 0;
+        soldierCountScript.soldierUpgrade5Level = 0;
+        soldierCountScript.soldierUpgrade6Level = 0;
+        soldierCountScript.soldierUpgrade7Level = 0;
+        soldierCountScript.soldierUpgrade8Level = 0;
+
+        soldierCountScript.soldierUpgrade1Cost = 500;
+        soldierCountScript.soldierUpgrade2Cost = 1000;
+        soldierCountScript.soldierUpgrade3Cost = 1500;
+        soldierCountScript.soldierUpgrade4Cost = 2000;
+        soldierCountScript.soldierUpgrade5Cost = 2500;
+        soldierCountScript.soldierUpgrade6Cost = 3000;
+        soldierCountScript.soldierUpgrade7Cost = 3500;
+        soldierCountScript.soldierUpgrade8Cost = 4000;
+
+        healthAndPriates.health = 3;
     }
 
     public void OpenUpgradeMenu()

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using BreakInfinity;
+using static BreakInfinity.BigDouble;
+
 
 public class HealthAndPriates : MonoBehaviour, IDataPersistence
 {
     public GainCoinButton gainCoinButton;
 
-    public static int health;
+    public int health;
 
     public float pirateArriveTime = 10;
 
@@ -48,6 +50,19 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
     public BigDouble takenMoney;
     public Text moneyPayText;
 
+    public string NotationMethod(BigDouble x, string y)
+    {
+        if (x > 100000)
+        {
+            var exponent = Floor(Log10(Abs(x)));
+            var mantissa = x / Pow(10, exponent);
+            return mantissa.ToString(format: "F2") + "e" + exponent;
+
+        }
+        return x.ToString(y);
+
+    }
+
     private void Update()
     {
         korsanPower = GuardCount + defencePower - reducedPower;
@@ -69,7 +84,9 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
 
         if (pirateGameUI.activeSelf)
         {
-            moneyPayText.text = "PAY! " + takenMoney + " COINS";
+            string moneyPayTextString;
+            moneyPayTextString = NotationMethod(takenMoney, y: "F0");
+            moneyPayText.text = "PAY! " + moneyPayTextString + " COINS";
         }
         else
         {
@@ -104,8 +121,15 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
             a = defencePower * GuardCount;
             b = korsanSayısı * korsanPower;
             winChance = (a - b) * 100 / (a + b);
-            winChanceText.text = "Win Cahnce: " + "%" + winChance.ToString("F0");
+            winChanceText.text = "Win Chance: " + "%" + winChance.ToString("F0");
             
+        }
+
+        if(health == 3)
+        {
+            can1.SetActive(true);
+            can2.SetActive(true);
+            can3.SetActive(true);
         }
 
         if(health == 2)
@@ -150,6 +174,7 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
         
         BattleMusic.Play();
 
+        takenMoney *= 2;
 
         if (winChance <= 10)
         {
@@ -160,7 +185,7 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
         {
             c = Random.Range(1, 4);
         }
-
+ 
         if (winChance > 20 && winChance <= 30)
         {
             c = Random.Range(1, 6);

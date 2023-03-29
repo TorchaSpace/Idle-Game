@@ -9,6 +9,7 @@ public class CardFeatures : MonoBehaviour
 
     public GainCoinButton gainCoinButton;
     public SellFish sellFish;
+    public HealthAndPriates HealthAndPriates;
 
     public Button newCardButton;
 

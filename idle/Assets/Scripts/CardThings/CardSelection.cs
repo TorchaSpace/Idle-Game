@@ -16,6 +16,8 @@ public class CardSelection : MonoBehaviour
     public int cardRangeForLeft;
     public int cardRangeForRight;
 
+    public GameObject lockedImage;
+
     [Header("Left Cards")]
     public GameObject LifeElixerLeft;
     public GameObject MermaidsHeartLeft;
@@ -62,12 +64,14 @@ public class CardSelection : MonoBehaviour
             cardRangeForLeft = Random.Range(1, 14);
             cardRangeForRight = Random.Range(1, 15);
             newCardButton.interactable = true;
+            lockedImage.SetActive(false);
             
         }
 
         else if(gainCoinButton.coins < reachedFish)
         {
             newCardButton.interactable = false;
+            lockedImage.SetActive(true);
         }
 
 

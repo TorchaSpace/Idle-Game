@@ -93,7 +93,7 @@ public class DefencePowerController : MonoBehaviour, IDataPersistence
     {
         if(healthAndPriates.defencePower < 500)
         {
-            DefencePower1Text.text = "Defence Upgrade 1\nCost: " + defenceUpgrade1Cost + " Coin\nPower: +1 Defence Power\nLevel: " + defenceUpgrade1Level;
+            DefencePower1Text.text = "Defence Upgrade 1\nCost: " + defenceUpgrade1Cost.ToString("F0") + " Coin\nPower: +1 Defence Power\nLevel: " + defenceUpgrade1Level;
         }
         else
         {
@@ -102,7 +102,7 @@ public class DefencePowerController : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.defencePower < 500)
         {
-            DefencePower2Text.text = "Defence Upgrade 2\nCost: " + defenceUpgrade2Cost + " Coin\nPower: +2 Defence Power\nLevel: " + defenceUpgrade2Level;
+            DefencePower2Text.text = "Defence Upgrade 2\nCost: " + defenceUpgrade2Cost.ToString("F0") + " Coin\nPower: +2 Defence Power\nLevel: " + defenceUpgrade2Level;
         }
         else
         {
@@ -111,7 +111,7 @@ public class DefencePowerController : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.defencePower < 500)
         {
-            DefencePower3Text.text = "Defence Upgrade 3\nCost: " + defenceUpgrade3Cost + " Coin\nPower: +3 Defence Power\nLevel: " + defenceUpgrade3Level;
+            DefencePower3Text.text = "Defence Upgrade 3\nCost: " + defenceUpgrade3Cost.ToString("F0") + " Coin\nPower: +3 Defence Power\nLevel: " + defenceUpgrade3Level;
         }
         else
         {
@@ -120,7 +120,7 @@ public class DefencePowerController : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.defencePower < 500)
         {
-            DefencePower4Text.text = "Defence Upgrade 4\nCost: " + defenceUpgrade4Cost + " Coin\nPower: +4 Defence Power\nLevel: " + defenceUpgrade4Level;
+            DefencePower4Text.text = "Defence Upgrade 4\nCost: " + defenceUpgrade4Cost.ToString("F0") + " Coin\nPower: +4 Defence Power\nLevel: " + defenceUpgrade4Level;
         }
         else
         {
@@ -129,7 +129,7 @@ public class DefencePowerController : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.defencePower < 500)
         {
-            DefencePower5Text.text = "Defence Upgrade 5\nCost: " + defenceUpgrade5Cost + " Coin\nPower: +5 Defence Power\nLevel: " + defenceUpgrade5Level;
+            DefencePower5Text.text = "Defence Upgrade 5\nCost: " + defenceUpgrade5Cost.ToString("F0") + " Coin\nPower: +5 Defence Power\nLevel: " + defenceUpgrade5Level;
         }
         else
         {
@@ -138,7 +138,7 @@ public class DefencePowerController : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.defencePower < 500)
         {
-            DefencePower6Text.text = "Defence Upgrade 6\nCost: " + defenceUpgrade6Cost + " Coin\nPower: +6 Defence Power\nLevel: " + defenceUpgrade6Level;
+            DefencePower6Text.text = "Defence Upgrade 6\nCost: " + defenceUpgrade6Cost.ToString("F0") + " Coin\nPower: +6 Defence Power\nLevel: " + defenceUpgrade6Level;
         }
         else
         {
@@ -147,7 +147,7 @@ public class DefencePowerController : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.defencePower < 500)
         {
-            DefencePower7Text.text = "Defence Upgrade 7\nCost: " + defenceUpgrade7Cost + " Coin\nPower: +7 Defence Power\nLevel: " + defenceUpgrade7Level;
+            DefencePower7Text.text = "Defence Upgrade 7\nCost: " + defenceUpgrade7Cost.ToString("F0") + " Coin\nPower: +7 Defence Power\nLevel: " + defenceUpgrade7Level;
         }
         else
         {
@@ -156,7 +156,7 @@ public class DefencePowerController : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.defencePower < 500)
         {
-            DefencePower8Text.text = "Defence Upgrade 8\nCost: " + defenceUpgrade8Cost + " Coin\nPower: +8 Defence Power\nLevel: " + defenceUpgrade8Level;
+            DefencePower8Text.text = "Defence Upgrade 8\nCost: " + defenceUpgrade8Cost.ToString("F0") + " Coin\nPower: +8 Defence Power\nLevel: " + defenceUpgrade8Level;
         }
         else
         {

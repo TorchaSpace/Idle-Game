@@ -27,6 +27,7 @@ public class DataPersistenceManager : MonoBehaviour
         instance = this;
     }
 
+    
     private void Start()
     {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);

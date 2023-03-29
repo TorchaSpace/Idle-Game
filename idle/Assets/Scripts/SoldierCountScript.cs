@@ -92,7 +92,7 @@ public class SoldierCountScript : MonoBehaviour, IDataPersistence
     {
         if (healthAndPriates.GuardCount < 100)
         {
-            soldierPower1Text.text = "Add Soldier 1\nCost: " + soldierUpgrade1Cost + " Coin\nPower: +1 Soldier\nLevel: " + soldierUpgrade1Level;
+            soldierPower1Text.text = "Add Soldier 1\nCost: " + soldierUpgrade1Cost.ToString("F0") + " Coin\nPower: +1 Soldier\nLevel: " + soldierUpgrade1Level;
         }
         else
         {
@@ -101,7 +101,7 @@ public class SoldierCountScript : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.GuardCount < 100)
         {
-            soldierPower2Text.text = "Add Soldier 2\nCost: " + soldierUpgrade2Cost + " Coin\nPower: +2 Soldier\nLevel: " + soldierUpgrade2Level;
+            soldierPower2Text.text = "Add Soldier 2\nCost: " + soldierUpgrade2Cost.ToString("F0") + " Coin\nPower: +2 Soldier\nLevel: " + soldierUpgrade2Level;
         }
         else
         {
@@ -110,7 +110,7 @@ public class SoldierCountScript : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.GuardCount < 100)
         {
-            soldierPower3Text.text = "Add Soldier 3\nCost: " + soldierUpgrade3Cost + " Coin\nPower: +3 Soldier\nLevel: " + soldierUpgrade3Level;
+            soldierPower3Text.text = "Add Soldier 3\nCost: " + soldierUpgrade3Cost.ToString("F0") + " Coin\nPower: +3 Soldier\nLevel: " + soldierUpgrade3Level;
         }
         else
         {
@@ -119,7 +119,7 @@ public class SoldierCountScript : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.GuardCount < 100)
         {
-            soldierPower4Text.text = "Add Soldier 4\nCost: " + soldierUpgrade4Cost + " Coin\nPower: +4 Soldier\nLevel: " + soldierUpgrade4Level;
+            soldierPower4Text.text = "Add Soldier 4\nCost: " + soldierUpgrade4Cost.ToString("F0") + " Coin\nPower: +4 Soldier\nLevel: " + soldierUpgrade4Level;
         }
         else
         {
@@ -128,7 +128,7 @@ public class SoldierCountScript : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.GuardCount < 100)
         {
-            soldierPower5Text.text = "Add Soldier 5\nCost: " + soldierUpgrade5Cost + " Coin\nPower: +5 Soldier\nLevel: " + soldierUpgrade5Level;
+            soldierPower5Text.text = "Add Soldier 5\nCost: " + soldierUpgrade5Cost.ToString("F0") + " Coin\nPower: +5 Soldier\nLevel: " + soldierUpgrade5Level;
         }
         else
         {
@@ -137,7 +137,7 @@ public class SoldierCountScript : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.GuardCount < 100)
         {
-            soldierPower6Text.text = "Add Soldier 6\nCost: " + soldierUpgrade6Cost + " Coin\nPower: +6 Soldier\nLevel: " + soldierUpgrade6Level;
+            soldierPower6Text.text = "Add Soldier 6\nCost: " + soldierUpgrade6Cost.ToString("F0") + " Coin\nPower: +6 Soldier\nLevel: " + soldierUpgrade6Level;
         }
         else
         {
@@ -146,7 +146,7 @@ public class SoldierCountScript : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.GuardCount < 100)
         {
-            soldierPower7Text.text = "Add Soldier 7\nCost: " + soldierUpgrade7Cost + " Coin\nPower: +7 Soldier\nLevel: " + soldierUpgrade7Level;
+            soldierPower7Text.text = "Add Soldier 7\nCost: " + soldierUpgrade7Cost.ToString("F0") + " Coin\nPower: +7 Soldier\nLevel: " + soldierUpgrade7Level;
         }
         else
         {
@@ -155,7 +155,7 @@ public class SoldierCountScript : MonoBehaviour, IDataPersistence
 
         if (healthAndPriates.GuardCount < 100)
         {
-            soldierPower8Text.text = "Add Soldier 8\nCost: " + soldierUpgrade8Cost + " Coin\nPower: +8 Soldier\nLevel: " + soldierUpgrade8Level;
+            soldierPower8Text.text = "Add Soldier 8\nCost: " + soldierUpgrade8Cost.ToString("F0") + " Coin\nPower: +8 Soldier\nLevel: " + soldierUpgrade8Level;
         }
         else
         {
