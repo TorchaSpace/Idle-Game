@@ -5277,7 +5277,7 @@ MonoBehaviour:
   buyCardScreen: {fileID: 1655468803}
   gainCoinButton: {fileID: 689204288}
   sellFish: {fileID: 1562954221}
-  HealthAndPriates: {fileID: 0}
+  HealthAndPriates: {fileID: 606439162}
   newCardButton: {fileID: 469334259}
   cardSelectionScreen: {fileID: 698223295}
   healthAndPriates: {fileID: 606439162}

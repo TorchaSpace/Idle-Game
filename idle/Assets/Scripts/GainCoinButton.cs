@@ -553,6 +553,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         {
             coins = 0;
             coinsClickValue = 1;
+            coinsPerSec = 0;
 
             clickUpgrade1Cost = 100;
             clickUpgrade2Cost = 200;
@@ -589,6 +590,44 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
             productionUpgrade6Level = 0;
             productionUpgrade7Level = 0;
             productionUpgrade8Level = 0;
+
+            defencePowerController.defenceUpgrade1Level = 0;
+            defencePowerController.defenceUpgrade2Level = 0;
+            defencePowerController.defenceUpgrade3Level = 0;
+            defencePowerController.defenceUpgrade4Level = 0;
+            defencePowerController.defenceUpgrade5Level = 0;
+            defencePowerController.defenceUpgrade6Level = 0;
+            defencePowerController.defenceUpgrade7Level = 0;
+            defencePowerController.defenceUpgrade8Level = 0;
+
+            defencePowerController.defenceUpgrade1Cost = 100;
+            defencePowerController.defenceUpgrade2Cost = 200;
+            defencePowerController.defenceUpgrade3Cost = 300;
+            defencePowerController.defenceUpgrade4Cost = 400;
+            defencePowerController.defenceUpgrade5Cost = 500;
+            defencePowerController.defenceUpgrade6Cost = 600;
+            defencePowerController.defenceUpgrade7Cost = 700;
+            defencePowerController.defenceUpgrade8Cost = 800;
+
+            soldierCountScript.soldierUpgrade1Level = 0;
+            soldierCountScript.soldierUpgrade2Level = 0;
+            soldierCountScript.soldierUpgrade3Level = 0;
+            soldierCountScript.soldierUpgrade4Level = 0;
+            soldierCountScript.soldierUpgrade5Level = 0;
+            soldierCountScript.soldierUpgrade6Level = 0;
+            soldierCountScript.soldierUpgrade7Level = 0;
+            soldierCountScript.soldierUpgrade8Level = 0;
+
+            soldierCountScript.soldierUpgrade1Cost = 500;
+            soldierCountScript.soldierUpgrade2Cost = 1000;
+            soldierCountScript.soldierUpgrade3Cost = 1500;
+            soldierCountScript.soldierUpgrade4Cost = 2000;
+            soldierCountScript.soldierUpgrade5Cost = 2500;
+            soldierCountScript.soldierUpgrade6Cost = 3000;
+            soldierCountScript.soldierUpgrade7Cost = 3500;
+            soldierCountScript.soldierUpgrade8Cost = 4000;
+
+            sellFish.gainedCoin = 0;
 
             gems += gemsToGet;
         }

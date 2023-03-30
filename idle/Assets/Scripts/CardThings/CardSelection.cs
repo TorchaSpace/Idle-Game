@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BreakInfinity;
 
-public class CardSelection : MonoBehaviour
+public class CardSelection : MonoBehaviour, IDataPersistence
 {
     public GainCoinButton gainCoinButton;
 
@@ -11,7 +12,7 @@ public class CardSelection : MonoBehaviour
 
     public Button newCardButton;
 
-    public static int reachedFish = 1000;
+    public static BigDouble reachedFish;
 
     public int cardRangeForLeft;
     public int cardRangeForRight;
@@ -504,5 +505,15 @@ public class CardSelection : MonoBehaviour
                 break;
         }
             
+    }
+
+    public void LoadData(GameData data)
+    {
+        reachedFish = data.reachedFish;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.reachedFish = reachedFish;
     }
 }

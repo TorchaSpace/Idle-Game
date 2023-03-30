@@ -113,6 +113,8 @@ public class GameData
     public int reducePower;
     public int health;
     public BigDouble takenMoney;
+
+    public BigDouble reachedFish;
     
     public GameData()
     {
@@ -210,5 +212,7 @@ public class GameData
         this.soldierUpgrade6Cost = 3000;
         this.soldierUpgrade7Cost = 3500;
         this.soldierUpgrade8Cost = 4000;
+
+        this.reachedFish = 1000;
     }
 }
