@@ -14,6 +14,12 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
     public DefencePowerController defencePowerController;
     public SoldierCountScript soldierCountScript;
 
+    public bool isSailed = false;
+    public GameObject pauseButton;
+    public GameObject goButton;
+    public Animator paddeling;
+    public Animator küçüktekne;
+
     [Header("UI")]
     public Text coinText;
     public Text clickValueText;
@@ -107,6 +113,19 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
     public BigDouble gemBoost;
     public BigDouble gemsToGet;
 
+    public void PauseButton()
+    {
+        isSailed = false;
+        pauseButton.SetActive(false);
+        goButton.SetActive(true);
+    }
+
+    public void GoButton()
+    {
+        isSailed = true;
+        pauseButton.SetActive(true);
+        goButton.SetActive(false);
+    }
 
     private void Start()
     {
@@ -240,10 +259,22 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         gemsText.text = Floor(gems).ToString("F0");
         gemBoostText.text = gemBoost.ToString("F2") + "x boost";
 
-        coinsPerSec = (productionUpgrade1Level + (productionUpgrade2Power * productionUpgrade2Level) +
+        if (isSailed)
+        {
+            coinsPerSec = (productionUpgrade1Level + (productionUpgrade2Power * productionUpgrade2Level) +
             (productionUpgrade3Power * productionUpgrade3Level) + (productionUpgrade4Power * productionUpgrade4Level) +
             (productionUpgrade5Power * productionUpgrade5Level) + (productionUpgrade6Power * productionUpgrade6Level) +
             (productionUpgrade7Power * productionUpgrade7Level) + (productionUpgrade8Power * productionUpgrade8Level)) * gemBoost + cardUpgrades;
+
+            paddeling.enabled = true;
+            küçüktekne.enabled = true;
+        }
+        else
+        {
+            coinsPerSec = 0;
+            paddeling.enabled = false;
+            küçüktekne.enabled = false;
+        }
 
         clickValueText.text = "+" + NotationMethod(coinsClickValue, y: "F0") + " Click";
         coinText.text = NotationMethod(coins, y: "F0");       

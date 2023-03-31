@@ -8,6 +8,9 @@ using static BreakInfinity.BigDouble;
 
 public class HealthAndPriates : MonoBehaviour, IDataPersistence
 {
+    public Text guardCountText;
+    public Text defencePowerText;
+
     public GainCoinButton gainCoinButton;
 
     public int health;
@@ -65,6 +68,9 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
+        guardCountText.text = GuardCount.ToString();
+        defencePowerText.text = defencePower.ToString();
+
         korsanPower = GuardCount + defencePower - reducedPower;
 
         pirateArriveTime -= Time.deltaTime;
@@ -297,6 +303,20 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
         pirateShip.GetComponent<Animator>().Play("GoneAnim");
 
         winLoseText.enabled = true;
+
+        defencePower -= korsanPower;
+
+        if(defencePower < 0)
+        {
+            defencePower = 0;
+        }
+
+        GuardCount -= korsanSayısı;
+
+        if (GuardCount < 0)
+        {
+            GuardCount = 0;
+        }
     }
 
     IEnumerator YouLose()
@@ -307,9 +327,18 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
         StartCoroutine(ShipDeactive());
         winLoseText.enabled = true;
         health--;
-        if(GuardCount > 0)
+        GuardCount -= korsanSayısı;
+
+        if(GuardCount < 0)
         {
-            GuardCount--;
+            GuardCount = 0;
+        }
+
+        defencePower -= korsanPower;
+
+        if (defencePower < 0)
+        {
+            defencePower = 0;
         }
     }
 
