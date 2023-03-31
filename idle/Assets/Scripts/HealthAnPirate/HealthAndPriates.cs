@@ -68,6 +68,16 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
+        if(GuardCount < 0)
+        {
+            GuardCount = 0;
+        }
+
+        if(defencePower < 0)
+        {
+            defencePower = 0;
+        }
+
         guardCountText.text = GuardCount.ToString();
         defencePowerText.text = defencePower.ToString();
 
@@ -306,17 +316,7 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
 
         defencePower -= korsanPower;
 
-        if(defencePower < 0)
-        {
-            defencePower = 0;
-        }
-
         GuardCount -= korsanSayısı;
-
-        if (GuardCount < 0)
-        {
-            GuardCount = 0;
-        }
     }
 
     IEnumerator YouLose()
@@ -328,18 +328,9 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
         winLoseText.enabled = true;
         health--;
         GuardCount -= korsanSayısı;
-
-        if(GuardCount < 0)
-        {
-            GuardCount = 0;
-        }
-
         defencePower -= korsanPower;
 
-        if (defencePower < 0)
-        {
-            defencePower = 0;
-        }
+        
     }
 
     

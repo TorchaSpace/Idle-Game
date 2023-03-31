@@ -356,4 +356,14 @@ public class CardFeatures : MonoBehaviour
         }
 
     }
+
+    public void BlueStone(int cost)
+    {
+        if(gainCoinButton.gems > cost)
+        {
+            gainCoinButton.coinsClickValue += gainCoinButton.coinsClickValue + (0.2f * gainCoinButton.coinsClickValue);
+            GainCoinButton.cardUpgrades += GainCoinButton.cardUpgrades + (0.2f * GainCoinButton.cardUpgrades);
+            gainCoinButton.gems -= cost;
+        }
+    }
 }
