@@ -255,7 +255,7 @@ public class CardFeatures : MonoBehaviour
         {
             if (healthAndPriates.korsanPower > 10)
             {
-                healthAndPriates.reducedPower += (int)(healthAndPriates.korsanPower + (healthAndPriates.korsanPower * 0.2));
+                healthAndPriates.reducedPower += healthAndPriates.korsanPower + (healthAndPriates.korsanPower * 0.2);
 
             }
 
@@ -275,7 +275,7 @@ public class CardFeatures : MonoBehaviour
         {
             if (healthAndPriates.korsanPower > 10)
             {
-                healthAndPriates.reducedPower += (int)(healthAndPriates.korsanPower + (healthAndPriates.korsanPower * 0.25));
+                healthAndPriates.reducedPower += healthAndPriates.korsanPower + (healthAndPriates.korsanPower * 0.25);
 
             }
 
@@ -298,7 +298,7 @@ public class CardFeatures : MonoBehaviour
         }
         else
         {
-            healthAndPriates.defencePower += (int)(healthAndPriates.defencePower + (healthAndPriates.defencePower * 0.2));
+            healthAndPriates.defencePower += healthAndPriates.defencePower + (healthAndPriates.defencePower * 0.2);
         }
 
         gainCoinButton.coins = 0;

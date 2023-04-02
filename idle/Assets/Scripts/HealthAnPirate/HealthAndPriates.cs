@@ -15,9 +15,9 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
 
     public int health;
 
-    public float pirateArriveTime = 10;
+    public float pirateArriveTime = 240f;
 
-    public int korsanSayısı;
+    public float korsanSayısı;
 
     public GameObject pirateShip;
 
@@ -25,17 +25,17 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
 
     public Text winChanceText;
 
-    public int defencePower;
-    public int GuardCount;
-    public int korsanPower;
+    public BigDouble defencePower;
+    public BigDouble GuardCount;
+    public BigDouble korsanPower;
 
-    public int a;
-    public int b;
+    public BigDouble a;
+    public BigDouble b;
 
-    public float winChance;
-    public int c;
+    public BigDouble winChance;
+    public BigDouble c;
 
-    public int reducedPower;
+    public BigDouble reducedPower;
 
     public SellFish sellFish;
 
@@ -53,6 +53,11 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
     public BigDouble takenMoney;
     public Text moneyPayText;
 
+    public double inGameTime;
+
+    float minPirate;
+    float maxPirate;
+
     public string NotationMethod(BigDouble x, string y)
     {
         if (x > 100000)
@@ -68,6 +73,11 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
+        minPirate = (float)inGameTime * 0.01f;
+        maxPirate = (float)inGameTime * .2f;
+
+        inGameTime += Time.deltaTime;
+
         if(GuardCount < 0)
         {
             GuardCount = 0;
@@ -78,22 +88,25 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
             defencePower = 0;
         }
 
-        guardCountText.text = GuardCount.ToString();
+        guardCountText.text = GuardCount.ToString("F0");
         defencePowerText.text = defencePower.ToString();
 
-        korsanPower = GuardCount + defencePower - reducedPower;
+        korsanPower = (GuardCount + defencePower - reducedPower) + (inGameTime * 0.01f);
 
         pirateArriveTime -= Time.deltaTime;
 
         if (pirateArriveTime <= 0)
         {
+            korsanSayısı = Random.Range(minPirate, maxPirate);
             pirateShip.SetActive(true);
             StartCoroutine(PlayGame());
             InGameMusic.enabled = false;
-            
+            pirateArriveTime = Random.Range(240f, 420f);      
         }
 
-        if(health == 0)
+        korsanSayısı = Mathf.Round(korsanSayısı);
+
+        if (health == 0)
         {
             //GameOver();
         }
@@ -110,24 +123,7 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
         }
 
         
-        if(gainCoinButton.coins < 10000 && !pirateGameUI.activeSelf && pirateArriveTime <= 0)
-        {
-            korsanSayısı = Random.Range(1, 6);
-            pirateArriveTime = Random.Range(600f, 1200f);
-        }
-
-        if(gainCoinButton.coins >= 10000 && gainCoinButton.coins < 100000 && !pirateGameUI.activeSelf && pirateArriveTime <= 0)
-        {
-            korsanSayısı = Random.Range(10, 16);
-            pirateArriveTime = Random.Range(600f, 1200f);
-        }
-
-        if(gainCoinButton.coins >= 100000 && !pirateGameUI.activeSelf && pirateArriveTime <= 0)
-        {
-            korsanSayısı = Random.Range(20, 26);
-            pirateArriveTime = Random.Range(600f, 1200f);
-        }
-
+        
         
 
         if (pirateGameUI.activeSelf)
@@ -174,6 +170,7 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
         this.reducedPower = data.reducePower;
         this.takenMoney = data.takenMoney;
         health = data.health;
+        this.inGameTime = data.inGameTime;
     }
 
     public void SaveData(ref GameData data)
@@ -183,6 +180,7 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
         data.reducePower = this.reducedPower;
         data.takenMoney = this.takenMoney;
         data.health = health;
+        data.inGameTime = this.inGameTime;
     }
 
     public void Attack()

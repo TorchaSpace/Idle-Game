@@ -9,6 +9,9 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
 {
     public GameObject upgradeMenu;
 
+    public Animator balıkcı;
+    
+
     public HealthAndPriates healthAndPriates;
     public SellFish sellFish;
     public DefencePowerController defencePowerController;
@@ -129,6 +132,8 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+        paddeling.Play("sit");
+
         productionUpgrade2Power = 5;
         productionUpgrade3Power = 10;
         productionUpgrade4Power = 15;
@@ -250,6 +255,14 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         data.clickUpgrade8Cost = this.clickUpgrade8Cost;
     }
 
+ 
+    IEnumerator Tıkladı()
+    {
+        yield return new WaitForSeconds(5f);
+        balıkcı.SetBool("isClicked", false);
+
+    }
+
     private void Update()
     {
         gemsToGet = 150 * Sqrt(coins / 1e7);
@@ -266,14 +279,25 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
             (productionUpgrade5Power * productionUpgrade5Level) + (productionUpgrade6Power * productionUpgrade6Level) +
             (productionUpgrade7Power * productionUpgrade7Level) + (productionUpgrade8Power * productionUpgrade8Level)) * gemBoost + cardUpgrades;
 
-            paddeling.enabled = true;
+            paddeling.Play("go");
             küçüktekne.enabled = true;
         }
         else
         {
             coinsPerSec = 0;
-            paddeling.enabled = false;
+            paddeling.Play("sit");
             küçüktekne.enabled = false;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            balıkcı.SetBool("isClicked", true);
+            StopAllCoroutines();
+
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            StartCoroutine(Tıkladı());
         }
 
         clickValueText.text = "+" + NotationMethod(coinsClickValue, y: "F0") + " Click";
@@ -353,7 +377,7 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
         string productionUpgrade1LevelString;
         productionUpgrade1LevelString = NotationMethod(productionUpgrade1Level, y: "F0");
 
-        productionUpgrade1Text.text = "Production Upgrade 1\nCost: " + productionUpgrade1CostString + " Fish\nPower: +1 Fish\nLevel" + productionUpgrade1LevelString;
+        productionUpgrade1Text.text = "Production Upgrade 1\nCost: " + productionUpgrade1CostString + " Fish\nPower: +1 Fish\nLevel " + productionUpgrade1LevelString;
 
         string productionUpgrade2CostString;
         productionUpgrade2CostString = NotationMethod(productionUpgrade2Cost, y: "F0");
@@ -576,12 +600,16 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
     public void Click()
     {
         coins += coinsClickValue;
+
     }
+
+    
 
     public void Prestige()
     {
         if(coins > 1000)
         {
+            healthAndPriates.inGameTime = 0;
             coins = 0;
             coinsClickValue = 1;
             coinsPerSec = 0;
@@ -666,6 +694,8 @@ public class GainCoinButton : MonoBehaviour, IDataPersistence
 
     public void FullReset()
     {
+        healthAndPriates.inGameTime = 0;
+
         gemBoost = 1;
 
         gems = 0;

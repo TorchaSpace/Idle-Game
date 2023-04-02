@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverControl : MonoBehaviour
 {
@@ -11,11 +12,14 @@ public class GameOverControl : MonoBehaviour
 
     public GameObject image;
 
+    public Text winLostText;
+
     private void Update()
     {
         if(HealthAndPriates.health <= 0)
         {
             gameOverScreen.SetActive(true);
+            winLostText.enabled = false;
         }
         else
         {

@@ -49,17 +49,17 @@ public class SellFish : MonoBehaviour, IDataPersistence
         {
             var exponent = (Floor(Log10(Abs(gainCoinButton.coins))));
             var mantissa = (gainCoinButton.coins / Pow(10, exponent));
-            fishToCoinCountText.text = "Fish: " + mantissa.ToString("F2") + "e" + exponent + " = " + "Coins: " + (gainCoinButton.coins * 0.5f).ToString("F0");
+            fishToCoinCountText.text = "Fish: " + mantissa.ToString("F2") + "e" + exponent + " = " + "Coins: " + (gainCoinButton.coins * 0.3f).ToString("F0");
         }
         else
         {
-            fishToCoinCountText.text = "Fishes: " + gainCoinButton.coins.ToString("F0") + " = " + "Coins: " + (gainCoinButton.coins * 0.5f).ToString("F0");
+            fishToCoinCountText.text = "Fishes: " + gainCoinButton.coins.ToString("F0") + " = " + "Coins: " + (gainCoinButton.coins * 0.3f).ToString("F0");
         }
     }
 
     public void ApllySell()
     {
-        gainedCoin += gainCoinButton.coins * 0.5f;
+        gainedCoin += gainCoinButton.coins * 0.3f;
 
         gainCoinButton.coins = 0;       
     }

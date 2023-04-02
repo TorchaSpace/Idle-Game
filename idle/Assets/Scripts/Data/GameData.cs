@@ -108,13 +108,17 @@ public class GameData
     public BigDouble soldierUpgrade7Level;
     public BigDouble soldierUpgrade8Level;
 
-    public int defencePower;
-    public int GuardCount;
-    public int reducePower;
+    public BigDouble defencePower;
+    public BigDouble GuardCount;
+    public BigDouble reducePower;
     public int health;
     public BigDouble takenMoney;
 
+    public double inGameTime;
+
     public BigDouble reachedFish;
+
+    public int sayı;
     
     public GameData()
     {
@@ -134,13 +138,13 @@ public class GameData
         this.health = 3;
 
         this.productionUpgrade1Cost = 500;
-        this.productionUpgrade2Cost = 1000;
-        this.productionUpgrade3Cost = 1500;
-        this.productionUpgrade4Cost = 2000;
-        this.productionUpgrade5Cost = 2500;
-        this.productionUpgrade6Cost = 3000;
-        this.productionUpgrade7Cost = 3500;
-        this.productionUpgrade8Cost = 4000;
+        this.productionUpgrade2Cost = 10000;
+        this.productionUpgrade3Cost = 15000;
+        this.productionUpgrade4Cost = 20000;
+        this.productionUpgrade5Cost = 25000;
+        this.productionUpgrade6Cost = 30000;
+        this.productionUpgrade7Cost = 35000;
+        this.productionUpgrade8Cost = 40000;
 
         this.productionUpgrade1Level = 0;
         this.productionUpgrade2Level = 0;
@@ -160,13 +164,13 @@ public class GameData
         this.productionUpgrade8Power = 35;
 
         this.clickUpgrade1Cost = 100;
-        this.clickUpgrade2Cost = 200;
-        this.clickUpgrade3Cost = 300;
-        this.clickUpgrade4Cost = 400;
-        this.clickUpgrade5Cost = 500;
-        this.clickUpgrade6Cost = 600;
-        this.clickUpgrade7Cost = 700;
-        this.clickUpgrade8Cost = 800;
+        this.clickUpgrade2Cost = 5000;
+        this.clickUpgrade3Cost = 12000;
+        this.clickUpgrade4Cost = 19000;
+        this.clickUpgrade5Cost = 26000;
+        this.clickUpgrade6Cost = 33000;
+        this.clickUpgrade7Cost = 40000;
+        this.clickUpgrade8Cost = 47000;
 
         this.clickUpgrade1Level = 0;
         this.clickUpgrade2Level = 0;
@@ -186,14 +190,14 @@ public class GameData
         this.defenceUpgrade7Level = 0;
         this.defenceUpgrade8Level = 0;
 
-        this.defenceUpgrade1Cost = 100;
-        this.defenceUpgrade2Cost = 200;
-        this.defenceUpgrade3Cost = 300;
-        this.defenceUpgrade4Cost = 400;
-        this.defenceUpgrade5Cost = 500;
-        this.defenceUpgrade6Cost = 600;
-        this.defenceUpgrade7Cost = 700;
-        this.defenceUpgrade8Cost = 800;
+        this.defenceUpgrade1Cost = 300;
+        this.defenceUpgrade2Cost = 2000;
+        this.defenceUpgrade3Cost = 3000;
+        this.defenceUpgrade4Cost = 4000;
+        this.defenceUpgrade5Cost = 5000;
+        this.defenceUpgrade6Cost = 6000;
+        this.defenceUpgrade7Cost = 7000;
+        this.defenceUpgrade8Cost = 8000;
 
         this.soldierUpgrade1Level = 0;
         this.soldierUpgrade2Level = 0;
@@ -205,14 +209,18 @@ public class GameData
         this.soldierUpgrade8Level = 0;
 
         this.soldierUpgrade1Cost = 500;
-        this.soldierUpgrade2Cost = 1000;
-        this.soldierUpgrade3Cost = 1500;
-        this.soldierUpgrade4Cost = 2000;
-        this.soldierUpgrade5Cost = 2500;
-        this.soldierUpgrade6Cost = 3000;
-        this.soldierUpgrade7Cost = 3500;
-        this.soldierUpgrade8Cost = 4000;
+        this.soldierUpgrade2Cost = 10000;
+        this.soldierUpgrade3Cost = 15000;
+        this.soldierUpgrade4Cost = 20000;
+        this.soldierUpgrade5Cost = 25000;
+        this.soldierUpgrade6Cost = 30000;
+        this.soldierUpgrade7Cost = 35000;
+        this.soldierUpgrade8Cost = 40000;
 
         this.reachedFish = 1000;
+
+        this.sayı = 0;
+
+        this.inGameTime = 0;
     }
 }
