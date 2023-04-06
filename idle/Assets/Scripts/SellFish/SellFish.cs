@@ -33,28 +33,8 @@ public class SellFish : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
-        if(gainedCoin > 1000)
-        {
-            var exponent = (Floor(Log10(Abs(gainedCoin))));
-            var mantissa = (gainedCoin / Pow(10, exponent));
-            coinText.text = mantissa.ToString("F2") + "e" + exponent;
-        }
-        else
-        {
-            coinText.text = gainedCoin.ToString("F0");
-
-        }
-
-        if (gainCoinButton.coins > 1000)
-        {
-            var exponent = (Floor(Log10(Abs(gainCoinButton.coins))));
-            var mantissa = (gainCoinButton.coins / Pow(10, exponent));
-            fishToCoinCountText.text = "Fish: " + mantissa.ToString("F2") + "e" + exponent + " = " + "Coins: " + (gainCoinButton.coins * 0.3f).ToString("F0");
-        }
-        else
-        {
-            fishToCoinCountText.text = "Fishes: " + gainCoinButton.coins.ToString("F0") + " = " + "Coins: " + (gainCoinButton.coins * 0.3f).ToString("F0");
-        }
+        fishToCoinCountText.text = GainCoinButton.Double2dec(gainCoinButton.coins) + " Fish" + " = " + GainCoinButton.Double2dec(gainCoinButton.coins * 0.3f) + " Coin";
+        coinText.text = GainCoinButton.Double2dec(gainedCoin);
     }
 
     public void ApllySell()

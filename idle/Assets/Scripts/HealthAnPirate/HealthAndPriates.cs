@@ -15,7 +15,7 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
 
     public int health;
 
-    public float pirateArriveTime = 240f;
+    public float pirateArriveTime;
 
     public float korsanSayısı;
 
@@ -88,8 +88,8 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
             defencePower = 0;
         }
 
-        guardCountText.text = GuardCount.ToString("F0");
-        defencePowerText.text = defencePower.ToString();
+        guardCountText.text = GainCoinButton.Double2dec(GuardCount);
+        defencePowerText.text = GainCoinButton.Double2dec(defencePower);
 
         korsanPower = (GuardCount + defencePower - reducedPower) + (inGameTime * 0.01f);
 
@@ -101,21 +101,19 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
             pirateShip.SetActive(true);
             StartCoroutine(PlayGame());
             InGameMusic.enabled = false;
-            pirateArriveTime = Random.Range(240f, 420f);      
+            pirateArriveTime = Random.Range(200f, 300f);
         }
 
         korsanSayısı = Mathf.Round(korsanSayısı);
 
-        if (health == 0)
-        {
-            //GameOver();
-        }
 
         if (pirateGameUI.activeSelf)
         {
             string moneyPayTextString;
-            moneyPayTextString = NotationMethod(takenMoney, y: "F0");
+            moneyPayTextString = GainCoinButton.Double2dec(takenMoney);
             moneyPayText.text = "PAY! " + moneyPayTextString + " COINS";
+            gainCoinButton.enabled = false;
+
         }
         else
         {
@@ -171,6 +169,7 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
         this.takenMoney = data.takenMoney;
         health = data.health;
         this.inGameTime = data.inGameTime;
+        this.pirateArriveTime = data.pirateArriveTime;
     }
 
     public void SaveData(ref GameData data)
@@ -181,11 +180,14 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
         data.takenMoney = this.takenMoney;
         data.health = health;
         data.inGameTime = this.inGameTime;
+        data.pirateArriveTime = this.pirateArriveTime;
     }
 
     public void Attack()
     {
-        
+        gainCoinButton.enabled = true;
+
+
         BattleMusic.Play();
 
         takenMoney *= 2;
@@ -263,7 +265,8 @@ public class HealthAndPriates : MonoBehaviour, IDataPersistence
         pirateShip.GetComponent<Animator>().Play("GoneAnim");
         StartCoroutine(ShipDeactive());
 
-        
+        gainCoinButton.enabled = true;
+
 
         if (sellFish.gainedCoin < takenMoney)
         {
